@@ -1,0 +1,5 @@
+i3,~/.config/i3/config
+polybar,~/.config/polybar/config
+sxhkd,~/.config/sxhkd/sxhkdrc
+emacs,~/.doom.d/init.el
+xinitrc,~/.xinitrc

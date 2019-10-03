@@ -1,0 +1,5 @@
+Display setup,~/scripts/rofi-display-setup.sh
+Scrot to blog,~/scripts/scrot-to-blog.sh
+Nerd font,~/scripts/rofi-nerdfonts.sh
+k8s namespace,~/scripts/rofi-kube-namespace.sh
+k8s context,~/scripts/rofi-kube-context.sh

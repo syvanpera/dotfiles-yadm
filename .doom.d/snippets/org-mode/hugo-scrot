@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Add latest screenshot as a Hugo figure
+# key: scrot
+# --
+#+caption: $0
+[[`(ts/scrot-to-blog)`]]

@@ -1,0 +1,18 @@
+;;; ~/dotfiles/emacs/doom.d/packages.el -*- lexical-binding: t; -*-
+
+;; (package! all-the-icons-ivy)
+;; (package! exec-path-from-shell)
+;; (package! org-projectile)
+;; (package! persistent-scratch)
+(package! org-gcal)
+(package! org-gtasks :recipe (:host github :repo "syvanpera/org-gtasks"))
+(package! ox-hugo)
+(package! prettier-js)
+(package! eyebrowse)
+(package! engine-mode)
+(package! gruvbox-theme)
+(package! yasnippet-snippets)
+(package! godoctor)
+(package! evil-iedit-state)
+(package! kubernetes)
+(package! kubernetes-evil)
