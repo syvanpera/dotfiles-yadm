@@ -4,8 +4,8 @@
  doom-theme 'doom-onedark
  ;; doom-theme 'doom-one
  ;; doom-theme 'doom-gruvbox
- ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
- doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
+ doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
+ ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
  exec-path (append exec-path '("/home/tuomo/go/bin"))
  )
 

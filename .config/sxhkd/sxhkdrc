@@ -1,0 +1,74 @@
+#super + r ; {r,e,f,n,h,s}
+#	{termite -e ranger,emacsclient -c,thunar,termite -e newsboat,termite -e htop,termite -e ncmcpp}
+
+alt + space
+	rofi -show drun
+
+alt + Return
+	~/scripts/terminal.sh
+
+alt + 0
+	~/scripts/rofi-power.sh
+
+alt + shift + space
+	rofi -modi "Files:~/scripts/rofi-file-browser.sh" -show Files
+
+alt + shift + c
+	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+alt + shift + n
+	networkmanager_dmenu
+
+alt + shift + t
+	~/scripts/rofi-tools.sh
+
+alt + shift + 0
+	rofi -show calc
+
+alt + shift + w
+	rofi -show window
+
+alt + shift + p
+	rofi-pass
+
+alt + shift + s
+	flameshot gui -p ~/Pictures/Screenshots
+
+# alt + shift + s
+# 	teiler --screenshot
+
+# alt + shift + c
+# 	~/scripts/rofi-org-capture.sh
+
+super + e
+	emacsclient -c
+
+super + r
+ 	st -e ranger
+
+super + {m,XF86Tools}
+	st -e neomutt
+
+super + n
+	st -e newsboat
+
+super + h
+	st -e htop
+
+super + l
+	~/scripts/lock-screen.sh
+
+XF86AudioRaiseVolume
+	~/scripts/pulse-volume.sh --up
+
+XF86AudioLowerVolume
+	~/scripts/pulse-volume.sh --down
+
+XF86AudioMute
+	~/scripts/pulse-volume.sh --mute
+
+XF86MonBrightnessUp
+	xbacklight -inc 5
+
+XF86MonBrightnessDown
+	xbacklight -dec 5

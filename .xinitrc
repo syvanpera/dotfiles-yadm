@@ -1,14 +1,14 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 # HIDPI
-# export GDK_SCALE=2
-# export GDK_DPI_SCALE=0.5
-# xrandr --dpi 192 &
-# xrdb -merge -I$HOME ~/.Xresources.hidpi &
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
+xrandr --dpi 192 &
+xrdb -merge -I$HOME ~/.Xresources.hidpi &
 
 # LODPI
-xrandr --dpi 96 &
-xrdb -merge -I$HOME ~/.Xresources.lodpi &
+# xrandr --dpi 96 &
+# xrdb -merge -I$HOME ~/.Xresources.lodpi &
 
 # export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_QPA_PLATFORMTHEME=gtk2
