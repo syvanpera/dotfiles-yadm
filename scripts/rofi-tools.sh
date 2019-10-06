@@ -9,7 +9,7 @@ function main() {
         "3 nerd font") ~/scripts/rofi-nerdfonts.sh;;
         "4 k8s namespace") ~/scripts/rofi-kube-namespace.sh;;
         "5 k8s context") ~/scripts/rofi-kube-context.sh;;
-        "6 edit configs") ~/scripts/rofi-edit-config.sh;;
+        "6 edit configs") ~/scripts/rofi/config-files.sh;;
     esac
 }
 
