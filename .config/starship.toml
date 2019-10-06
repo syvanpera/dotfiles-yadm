@@ -21,3 +21,6 @@ symbol = " "
 
 [nodejs]
 symbol = " "
+
+[kubernetes]
+disabled = true
