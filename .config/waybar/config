@@ -1,0 +1,29 @@
+{
+  "layer": "top",
+  "output": ["DP-1"],
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["network", "battery", "clock"],
+  "sway/workspaces": {
+    "all-outputs": true,
+    "current-only": false
+  },
+  "sway/window": {
+    "max-length": 50
+  },
+  "network": {
+    "interface": "wlp60s0",
+    "format-disconnected": "睊",
+    "format-wifi": " {essid}",
+    "on-click": "networkmanager_dmenu"
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "clock": {
+    "format-alt": "{:%a %d.%m. %H:%M}"
+  }
+}
+
+// vim:filetype=json
