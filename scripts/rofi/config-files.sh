@@ -6,8 +6,6 @@ config_files="$(dirname $0)/config-files.csv"
 
 readarray configs < "${config_files}"
 
-echo $config_files
-
 config_entry=$(
     for config in "${configs[@]}";{
         echo ${config/,/ }
@@ -21,3 +19,4 @@ config="${config_entry#* }"
 expanded="${config//\~/$HOME}"
 
 st -e nvim $expanded
+# emacsclient -n $expanded
