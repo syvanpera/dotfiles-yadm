@@ -11,7 +11,11 @@ def scratchpad_count():
         if con.workspace().name == '__i3_scratch':
             scratch_count += 1
 
-    return scratch_count
+    if scratch_count > 0:
+        separator = "%{F#665C54}•%{F-}"
+        return f' {scratch_count} {separator}'
+
+    return ''
 
 # Define a callback to be called when you switch workspaces.
 def on_window(self, e):
