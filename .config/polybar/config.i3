@@ -102,35 +102,35 @@ module-margin-right = 0
 monitor = eDP1
 inherit = bar/hidpi
 
-modules-left = powermenu i3 xwindow
-modules-right = separator cpu memory fs-root fs-home separator vpncheck network separator scratchpad separator-alt backlight separator-alt pulseaudio separator-alt battery separator date
+modules-left = logo i3 xwindow
+modules-right = scratchpad fs-root separator-alt fs-home separator-alt cpu separator-alt memory separator-alt backlight separator-alt pulseaudio separator vpncheck network separator battery separator date
 
 [bar/dp1-1]
 monitor = DP1-1
 inherit = bar/lodpi
 
-modules-left = powermenu i3 xwindow
-modules-right = cpu memory separator-alt fs-root fs-home separator vpncheck network separator scratchpad separator-alt backlight separator-alt pulseaudio separator-alt battery separator date
+modules-left = logo i3 xwindow
+modules-right = scratchpad fs-root separator-alt fs-home separator-alt cpu separator-alt memory separator-alt backlight separator-alt pulseaudio separator vpncheck network separator battery separator date
 
 [bar/dp1]
 monitor = DP1
 inherit = bar/lodpi
 
-modules-left = powermenu i3 xwindow
-modules-right = separator cpu memory separator-alt fs-root fs-home separator vpncheck network separator scratchpad separator-alt backlight separator-alt pulseaudio separator-alt battery separator date
+modules-left = logo i3 xwindow
+modules-right = scratchpad fs-root separator-alt fs-home separator-alt cpu separator-alt memory separator-alt backlight separator-alt pulseaudio separator vpncheck network separator battery separator date
 
 [bar/dp2]
 monitor = DP2
 inherit = bar/lodpi
 
-modules-left = powermenu i3 xwindow
+modules-left = logo i3 xwindow
 modules-right = date
 
 [bar/edp1]
 monitor = eDP1
 inherit = bar/hidpi
 
-modules-left = powermenu i3 xwindow
+modules-left = logo i3 xwindow
 modules-right = date
 
 ;== Modules ========================================================
@@ -241,7 +241,7 @@ label-occupied-underline = ${color.occupied}
 
 [module/xwindow]
 type = internal/xwindow
-label = "• %title:0:65:...%"
+label = "• %title:0:65:...% •"
 label-xwindow-width = 100
 
 [module/term]
@@ -305,8 +305,8 @@ type = custom/script
 interval = 0
 tail = true
 
-format-prefix = " "
-format-prefix-foreground = ${color.fg}
+; format-prefix = " "
+; format-prefix-foreground = ${color.fg}
 exec = python -u ~/scripts/i3-scratchpad-count.py
 
 [module/fs-root]
@@ -442,8 +442,9 @@ time-alt = " %a %d.%m.%Y  "
 type = internal/cpu
 interval = 5
 
-label = CPU %percentage%%
-format = %{A1:termite -e htop:}<label> <bar-load>%{A}
+label =  %percentage%%
+; format = %{A1:termite -e htop:}<label> <bar-load>%{A}
+format = %{A1:termite -e htop:}<label>%{A}
 bar-load-indicator =
 bar-load-width = 10
 bar-load-foreground-0 = ${color.green}
@@ -459,8 +460,9 @@ label-foreground = ${color.fg}
 type = internal/memory
 interval = 5
 
-label = MEM %percentage_used%%
-format = %{A1:termite -e htop:}<label> <bar-used>%{A}
+label =  %percentage_used%%
+format = %{A1:termite -e htop:}<label>%{A}
+; format = %{A1:termite -e htop:}<label> <bar-used>%{A}
 bar-used-indicator =
 bar-used-width = 10
 bar-used-foreground-0 = ${color.green}
@@ -523,6 +525,43 @@ animation-charging-4 = 
 ; Framerate in milliseconds
 animation-charging-framerate = 750
 
+
+[module/logo]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = 
+label-open-padding = 2
+label-open-background = ${color.acolor}
+label-open-foreground = ${color.fg}
+label-close = "   cancel  "
+label-close-background = ${color.urgent}
+label-close-foreground = ${color.fg}
+label-separator = " "
+label-separator-foreground = ${color.fg-alt}
+
+menu-0-0 = logout
+menu-0-0-exec = i3-msg exit
+menu-0-1 = reboot
+menu-0-1-exec = systemctl reboot
+menu-0-2 = "power off   "
+menu-0-2-exec = systemctl poweroff
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = "logout   "
+menu-1-1-exec = i3-msg exit
+
+menu-2-0 = cancel
+menu-2-0-exec = menu-open-0
+menu-2-1 = "reboot   "
+menu-2-1-exec = systemctl reboot
+
+menu-3-0 = cancel
+menu-3-0-exec = menu-open-0
+menu-3-1 = "power off   "
+menu-3-1-exec = systemctl poweroff
 
 [module/powermenu]
 type = custom/menu
