@@ -40,6 +40,9 @@ alt + shift + s
 # alt + shift + c
 # 	~/scripts/rofi-org-capture.sh
 
+super + shift + e
+	~/scripts/rofi/edit-config.sh
+
 super + e
 	emacsclient -c
 
