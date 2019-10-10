@@ -178,7 +178,7 @@
   floating_modifier $mod normal
 
   # Reload the configuration file
-  bindsym $mod+Shift+c reload
+  bindsym $super+Shift+c reload
 
   # Exit sway (logs you out of your Wayland session)
   bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
@@ -300,7 +300,15 @@
 # Launcher bindings -----------------------------------------------------------------------------{{{
 
   bindsym $mod+Shift+n exec networkmanager_dmenu
+  bindsym $mod+Shift+w exec ~/scripts/rofi/windows.sh
+  bindsym $mod+Shift+s exec ~/scripts/rofi/screenshot.sh
   bindsym $mod+0 exec ~/scripts/rofi/sway-power.sh
+
+  bindsym $super+e exec emacsclient -c
+  bindsym $super+r exec st -e ranger
+  bindsym $super+h exec st -e htop
+  bindsym $super+m exec st -e neomutt
+  bindsym $super+n exec st -e newsboat
 
 # }}}
 

@@ -1,9 +1,14 @@
 {
   "layer": "top",
-  "output": ["DP-1"],
+  "output": ["eDP-1"],
   "modules-left": ["sway/workspaces", "sway/mode"],
   "modules-center": ["sway/window"],
-  "modules-right": ["network", "battery", "clock"],
+  "modules-right": ["network", "custom/separator", "battery", "custom/separator", "clock"],
+  "custom/separator": {
+    "format": "",
+    "interval": "once",
+    "tooltip": false
+  },
   "sway/workspaces": {
     "all-outputs": true,
     "current-only": false

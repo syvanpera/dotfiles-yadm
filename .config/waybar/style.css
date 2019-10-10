@@ -7,8 +7,8 @@
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 1px solid rgba(59, 132, 192, 0.5);
+    background-color: rgba(30, 30, 30, 0.8);
+    /* border-bottom: 1px solid rgba(59, 132, 192, 0.8); */
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -51,8 +51,8 @@ window#waybar.solo {
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    background-color: rgba(59, 132, 192, 0.5);
+    border-bottom: 3px solid rgba(59, 132, 192, 1);
 }
 
 #workspaces button.urgent {
@@ -77,23 +77,23 @@ window#waybar.solo {
 #mode,
 #idle_inhibitor,
 #mpd {
-    padding: 0 10px;
+    padding: 0 5px;
     margin: 0 4px;
     color: #ffffff;
 }
 
 #clock {
-    background-color: #64727D;
+    /* background-color: #64727D; */
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    /* background-color: #ffffff; */
+    /* color: #000000; */
 }
 
 #battery.charging {
-    color: #ffffff;
-    background-color: #26A65B;
+    /* color: #ffffff; */
+    /* background-color: #26A65B; */
 }
 
 @keyframes blink {
@@ -131,7 +131,7 @@ label:focus {
 }
 
 #network {
-    background-color: #2980b9;
+    /* background-color: #2980b9; */
 }
 
 #network.disconnected {
@@ -198,5 +198,10 @@ label:focus {
 
 #mpd.paused {
     background-color: #51a37a;
+}
+
+#custom-separator {
+  color: #ffffff;
+  margin: 0 5px;
 }
 
