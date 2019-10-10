@@ -2,6 +2,7 @@
 (setq
  ;; doom-theme 'doom-dracula
  doom-theme 'doom-onedark
+ ;; doom-theme 'doom-palenight
  ;; doom-theme 'doom-one
  ;; doom-theme 'doom-gruvbox
  doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
@@ -195,6 +196,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(hl-line ((t (:background "#3C424C"))))
  '(solaire-default-face ((t (:inherit default :background "#1E1E1E"))))
  '(whitespace-tab ((t (:background "#1E1E1E" :foreground "#555556")))))
 
