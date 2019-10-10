@@ -1,6 +1,5 @@
 danhper/fish-ssh-agent
 jethrokuan/fzf
-rafaelrinaldi/pure
-matchai/spacefish
 jorgebucaran/fish-nvm
 jethrokuan/z
+evanlucas/fish-kubectl-completions
