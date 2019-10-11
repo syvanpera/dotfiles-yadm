@@ -15,26 +15,21 @@
 
 white = #FFFFFF
 black = #000000
-gray = #5c6370
+gray  = #1d1f21
 
-green = #689d6a
-yellow = #ecbe7b
+green  = #b5bd68
+yellow = #f0c674
 orange = #da8548
-red = #cc626a
-; blue = #458588
-blue = #3b84c0
+red    = #cc6666
+blue   = #61afef
 
-; bg = #2e3440
-; bg = #21242B
-; bg = #282828
 bg = #1e1e1e
 fg = #d8dee9
 fg-alt = #abb2bf
 
-; acolor  = #458588
-acolor  = #3b84c0
-asepcolor = #665C54
-sepcolor = #458588
+acolor  = #61afef
+asepcolor = #969896
+sepcolor = #61afef
 urgent = #cc626a
 unfocused = #5c6370
 occupied = #fabd2f
@@ -534,10 +529,10 @@ format-spacing = 1
 label-open = 
 label-open-padding = 2
 label-open-background = ${color.acolor}
-label-open-foreground = ${color.fg}
+label-open-foreground = ${color.gray}
 label-close = "   cancel  "
 label-close-background = ${color.urgent}
-label-close-foreground = ${color.fg}
+label-close-foreground = ${color.gray}
 label-separator = " "
 label-separator-foreground = ${color.fg-alt}
 

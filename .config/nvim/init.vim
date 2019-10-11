@@ -133,7 +133,8 @@
   set background=dark
   syntax on
 
-  colorscheme onedark
+  " colorscheme onedark
+  colorscheme base16-tomorrow-night
 
   highlight Normal guibg=NONE ctermbg=NONE guifg=#e9fffa
 
@@ -225,8 +226,8 @@
   let g:airline#extensions#ale#warning_symbol=' '
 
   let g:airline_symbols.branch=''
-  " let g:airline_theme='base16_oceanicnext'
-  let g:airline_theme='onedark'
+  let g:airline_theme='base16_tomorrow'
+  " let g:airline_theme='onedark'
 
   nmap <leader>1 <Plug>AirlineSelectTab1
   nmap <leader>2 <Plug>AirlineSelectTab2
