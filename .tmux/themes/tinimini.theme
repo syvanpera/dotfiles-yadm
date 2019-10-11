@@ -10,18 +10,18 @@ setw -g clock-mode-colour colour135
 
 # Status bar -------------------------------------------------------------
 set -g status-position bottom
-set -g status-bg colour8
+set -g status-bg colour19
 set -g status-fg colour137
 # set -g status-left "#[fg=colour237,bg=colour11]   #S #[fg=colour11,bg=colour237,nobold,nounderscore,noitalics]"
-set -g status-left "#[fg=colour0,bg=colour2]  #S #[fg=colour2,bg=colour8,nobold,nounderscore,noitalics]"
+set -g status-left "#[fg=colour0,bg=colour2]  #S #[fg=colour2,bg=colour19,nobold,nounderscore,noitalics]"
 
 # set -g status-right "#[fg=colour7,bg=colour237,nobold,nounderscore,noitalics]#[fg=colour15,bg=colour237] #(~/scripts/kube-context.sh) - #[italics]#(~/scripts/kube-namespace.sh)#[noitalics] #[fg=colour237,bg=colour11,nobold,nounderscore,noitalics]   #h "
 set -g status-right "#[fg=colour0,bg=colour2,nobold,nounderscore,noitalics]   #h "
 set -g status-right-length 100
 set -g status-left-length 30
 
-setw -g window-status-current-format "#[fg=colour8,bg=colour4]#[fg=colour232] ► #I ◄  #[nobold]: #W #[fg=colour6,bg=colour8]"
+setw -g window-status-current-format "#[fg=colour19,bg=colour4]#[fg=colour232] ► #I ◄  #[nobold]: #W #[fg=colour4,bg=colour19]"
 
 setw -g window-status-separator ""
-setw -g window-status-format "#[fg=colour8,bg=colour238]#[fg=green,bg=colour238] #I :#[fg=green,bg=colour238] #W #[fg=colour238,bg=colour8]"
+setw -g window-status-format "#[fg=colour19,bg=colour238]#[fg=green,bg=colour238] #I :#[fg=green,bg=colour238] #W #[fg=colour238,bg=colour19]"
 # ------------------------------------------------------------------------
