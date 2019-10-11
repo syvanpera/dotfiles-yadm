@@ -3,33 +3,25 @@
 (setq user-full-name "Tuomo Syvänperä"
       user-mail-address "tuomo.syvanpera@gmail.com")
 
-(setq-default indent-tabs-mode nil
-              evil-shift-width 4
-              tab-width 4)
-
 (setq system-time-locale "C"
       calendar-week-start-day 1)
 
 (add-to-list 'load-path (expand-file-name "elisp" doom-private-dir))
 
-;; (require 'awesome-tab)
-;; (awesome-tab-mode t)
-;;
-;;
 (require 'simpleclip)
 (simpleclip-mode 1)
 
 (with-current-buffer "*scratch*"  (emacs-lock-mode 'kill))
 (with-current-buffer "*Messages*" (emacs-lock-mode 'kill))
 
-(load! "+funcs")
-(load! "+bindings")
-;; (load! "+hydras")
+(load! "funcs")
+(load! "bindings")
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
-(add-hook 'dired-mode-hook (lambda () (require 'dired-sort)))
+;; (add-hook 'dired-mode-hook (lambda () (require 'dired-sort)))
 
-(setq dired-listing-switches (concat dired-listing-switches "Gg"))
+(setq dired-listing-switches (concat dired-listing-switches "Gg")
+      dired-dwim-target t)
 
 (after! evil
   (setq evil-vsplit-window-right t)
@@ -59,7 +51,8 @@
 ;   (setq projectile-git-command "git ls-files -co --exclude-standard | grep -v '^node_modules/' | tr '\\n' '\\0'"))
 
 (after! projectile
-  (setq projectile-enable-caching nil))
+  (setq projectile-enable-caching nil
+        projectile-project-search-path '("~/projects/caverion/" "~/projects/personal/")))
 
 (after! lispyville
   lispyville-set-key-theme
@@ -89,16 +82,6 @@
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t))
 
-;; (def-package! persistent-scratch
-;;   :config
-;;   (setq persistent-scratch-scratch-buffer-p-function
-;;         (lambda () (string-prefix-p "*scratch" (buffer-name))))
-;;   (persistent-scratch-setup-default))
-
-; (def-package! exec-path-from-shell
-;   :config
-;   (exec-path-from-shell-initialize))
-
 (def-package! org-gcal
   :after org
   :commands (org-gcal-sync
@@ -123,36 +106,9 @@
 (def-package! ox-hugo
   :after ox)
 
-; (def-package! gruvbox-theme
-;   :config
-;   (load-theme 'gruvbox-dark-hard t))
-
-;;(def-package! org-projectile
-;;  :after org
-;;  :config
-;;  (progn
-;;    (setq org-projectile-projects-file (concat org-directory "/projects.org")
-;;          org-projectile-capture-template "* ☛ TODO %?\n"
-;;          org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-;;    (push (org-projectile-project-todo-entry) org-capture-templates)))
-
 (def-package! eyebrowse
   :config
   (eyebrowse-mode t))
-
-(def-package! engine-mode
-  :config
-  (engine-mode t)
-  (defengine devdocs
-             "https://devdocs.io/#q=%s"
-             :keybinding "d")
-             ;; :browser 'eww-browse-url)
-  (defengine google
-             "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
-             :keybinding "g")
-  (defengine stack-overflow
-             "https://stackoverflow.com/search?q=%s"
-             :keybinding "s"))
 
 (def-package! yasnippet-snippets
   :after yasnippet)
@@ -160,15 +116,29 @@
 (def-package! evil-iedit-state
   :after evil)
 
-(def-package! kubernetes)
+(def-package! org-super-agenda
+  :after org-agenda
+  :init
+  (setq org-super-agenda-groups '((:name "Today"
+                                         :time-grid t
+                                         :scheduled today)
+                                  (:name "Due today"
+                                         :deadline today)
+                                  (:name "Important"
+                                         :priority "A")
+                                  (:name "Overdue"
+                                         :deadline past)
+                                  (:name "Due soon"
+                                         :deadline future)
+                                  (:name "Big Outcomes"
+                                         :tag "bo")))
+  :config
+  (org-super-agenda-mode))
 
-(def-package! kubernetes-evil
-  :after kubernetes)
-
-(load! "+email")     ;; Yes, I read my email with emacs too
-(load! "+languages") ;; Programming stuff
-(load! "+ui")        ;; UI modifications
-(load! "+org")       ;; Org mode stuff
+;; (load! "email")     ;; Yes, I read my email with emacs too
+(load! "languages") ;; Programming stuff
+(load! "ui")        ;; UI modifications
+(load! "org")       ;; Org mode stuff
 
 (provide 'config)
 

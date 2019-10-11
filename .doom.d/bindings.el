@@ -20,8 +20,6 @@
  :gnvime "M-F" #'+default/search-project
  :gnvime "M-c" #'simpleclip-copy
  :gnvime "M-v" #'simpleclip-paste
- :gnvime "C-+" #'text-scale-increase
- :gnvime "C--" #'text-scale-decrease
  :gnvime "s-f" #'swiper
  :gnvime "C-u" #'universal-argument
  :gnvime "M-r" #'counsel-imenu
@@ -70,6 +68,8 @@
  ;; Text-scaling
  :ne "M-=" (λ! (text-scale-set 0))
  :ne "M-0" (λ! (text-scale-set 0))
+ :ne "C-+" #'text-scale-increase
+ :ne "C--" #'text-scale-decrease
  :ne "M-+" #'text-scale-increase
  :ne "M--" #'text-scale-decrease
  :ne "M-z" #'doom@text-zoom/body
@@ -107,8 +107,8 @@
      :desc "Prodigy"              :n  "p" #'prodigy)
    (:prefix ("b" . "buffer")
      :desc "Switch buffer"        :n  "b" #'ts/switch-buffer
-     :desc "Kill this buffer"     :n  "d" #'kill-this-buffer
-     :desc "Kill buffer"          :n  "k" #'kill-buffer
+     ;; :desc "Kill this buffer"     :n  "d" #'kill-this-buffer
+     ;; :desc "Kill buffer"          :n  "k" #'kill-buffer
      :desc "Open messages buffer" :n  "m" #'spacemacs/switch-to-messages-buffer
      :desc "Open scratch buffer"  :n  "s" #'(lambda () (interactive)
                                               (let ((current-prefix-arg t))
@@ -176,10 +176,6 @@
      :desc "Switch to window conf 9" :n  "9" #'eyebrowse-switch-to-window-config-9
      :desc "Last window conf"        :n  "'" #'eyebrowse-last-window-config
      :desc "Close window conf"       :n  "d" #'eyebrowse-close-window-config)
-   (:prefix ("f" . "file")
-     :desc "Find file"            :n  "f" #'counsel-find-file)
-   ;; (:desc "file" :prefix "f"
-   ;;   :desc "Find file"            :n  "f" #'helm-find-files)
    (:prefix ("/" . "search")
      :desc "Search buffer"             :n  "/" #'counsel-grep-or-swiper
      :desc "Search project for symbol" :n  "*" #'+default/search-project-for-symbol-at-point

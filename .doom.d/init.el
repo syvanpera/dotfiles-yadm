@@ -1,12 +1,13 @@
 ;;; init.el -*- lexical-binding: t; -*-
 (setq
  ;; doom-theme 'doom-dracula
- doom-theme 'doom-onedark
+ ;; doom-theme 'doom-onedark
+ doom-theme 'doom-tomorrow-night
  ;; doom-theme 'doom-palenight
  ;; doom-theme 'doom-one
  ;; doom-theme 'doom-gruvbox
- doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
- ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
+ ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
+ doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
  exec-path (append exec-path '("/home/tuomo/go/bin"))
  )
 
@@ -19,6 +20,7 @@
        (ivy               ; a search engine for love and life
         +fuzzy
         +icons)
+        ;; +childframe)
 
        :ui
        deft              ; notational velocity for Emacs
@@ -58,7 +60,7 @@
 
        :emacs
        (dired            ; making dired pretty [functional]
-        +ranger         ; bringing the goodness of ranger to dired
+        ;;+ranger         ; bringing the goodness of ranger to dired
         +icons          ; colorful icons for dired-mode
         )
        electric          ; smarter, keyword-based electric-indent
@@ -71,7 +73,7 @@
 
        :tools
        ;;ansible
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       debugger          ; FIXME stepping through code, to help you add bugs
        direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -196,9 +198,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(hl-line ((t (:background "#3C424C"))))
- '(solaire-default-face ((t (:inherit default :background "#1E1E1E"))))
- '(whitespace-tab ((t (:background "#1E1E1E" :foreground "#555556")))))
+ '(default ((t (:inherit nil :stipple nil :background "#1d1f21" :foreground "#e9efea" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "CTDB" :family "FuraCode Nerd Font"))))
+ '(font-lock-builtin-face ((t (:foreground "#61afef"))))
+ '(font-lock-function-name-face ((t (:foreground "#61afef"))))
+ '(solaire-hl-line-face ((t (:inherit hl-line :background "#363739"))))
+ '(solaire-default-face ((t (:inherit default :background "#1e1e1e"))))
+ '(whitespace-tab ((t (:background "#1e1e1e" :foreground "#3f4040")))))
 
 ;; Gruvbox colors
 ; (custom-set-faces

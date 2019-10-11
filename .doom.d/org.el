@@ -178,113 +178,113 @@
   ;;                         :immediate-finish t :kill-buffer t))
   )
 
-(map!
- (:prefix "C-c"
-   :gnvime "i"       #'ts/open-org-inbox
-   :gnvime "l"       #'org-store-link
-   :gnvime "a"       #'org-agenda
-   :gnvime "c"       #'org-capture
-   :gnvime "b"       #'org-switchb)
-
- (:prefix "C-c r"
-   :gnvime "d"       #'ts/new-daily-review
-   :gnvime "w"       #'ts/new-weekly-review
-   :gnvime "m"       #'ts/new-monthly-review)
-
- (:after org
-   :map org-mode-map
-   :nvime "M-h" #'org-metaleft
-   :nvime "M-l" #'org-metaright
-   :nvime "M-J" #'org-shiftmetadown
-   :nvime "M-K" #'org-shiftmetaup
-   :nvime "M-H" #'org-shiftmetaleft
-   :nvime "M-L" #'org-shiftmetaright
-   :nvime "C-j" #'evil-window-down
-   :nvime "C-k" #'evil-window-up
-   :nvime "C-c t l" #'org-toggle-link-display
-   :nvme "L" #'org-shiftright
-   :nvme "H" #'org-shiftleft
-   ;; :nvme "K" #'org-shiftup
-   ;; :nvme "J" #'org-shiftdown
-   :nvime "s-<return>" #'org-meta-return
-
-   :localleader
-   "s" nil
-   "t" nil
-   "T" nil
-   "d" nil
-   "i" nil
-   (:prefix ("s" . "subtrees")
-     "a" #'org-toggle-archive-tag
-     "A" #'org-archive-subtree
-     "b" #'org-tree-to-indirect-buffer
-     "h" #'org-promote-subtree
-     "j" #'org-move-subtree-down
-     "k" #'org-move-subtree-up
-     "l" #'org-demote-subtree
-     "n" #'org-narrow-to-subtree
-     "N" #'widen
-     "r" #'org-refile
-     "s" #'org-sparse-tree
-     "S" #'org-sort
-     )
-   (:prefix ("T" . "toggles")
-     "c" #'org-toggle-checkbox
-     "e" #'org-toggle-pretty-entities
-     "i" #'org-toggle-inline-images
-     "l" #'org-toggle-link-display
-     "t" #'org-show-todo-tree
-     "T" #'org-todo
-     "h" #'org-toggle-heading
-     )
-   (:prefix ("d" . "time")
-     "d" #'org-deadline
-     "s" #'org-schedule
-     "t" #'org-time-stamp
-     "T" #'org-time-stamp-inactive
-     )
-   (:prefix ("t" . "tables")
-     "a" #'org-table-align
-     "b" #'org-table-blank-field
-     "c" #'org-table-convert
-     "dc" #'org-table-delete-column
-     "dr" #'org-table-kill-row
-     "e" #'org-table-eval-formula
-     "E" #'org-table-export
-     "h" #'org-table-previous-field
-     "H" #'org-table-move-column-left
-     "ic" #'org-table-insert-column
-     "ih" #'org-table-insert-hline
-     "iH" #'org-table-hline-and-move
-     "ir" #'org-table-insert-row
-     "I" #'org-table-import
-     "j" #'org-table-next-row
-     "J" #'org-table-move-row-down
-     "K" #'org-table-move-row-up
-     "l" #'org-table-next-field
-     "L" #'org-table-move-column-right
-     "n" #'org-table-create
-     "N" #'org-table-create-with-table.el
-     "r" #'org-table-recalculate
-     "s" #'org-table-sort-lines
-     "tf" #'org-table-toggle-formula-debugger
-     "to" #'org-table-toggle-coordinate-overlays
-     "w" #'org-table-wrap-region
-     )
-   (:prefix ("i" . "insertion")
-     "b" #'org-insert-structure-template
-     "d" #'org-insert-drawer
-     "e" #'org-set-effort
-     "f" #'org-footnote-new
-     "h" #'org-insert-heading
-     "H" #'org-insert-heading-after-current
-     "i" #'org-insert-item
-     "K" #'spacemacs/insert-keybinding-org
-     "l" #'org-insert-link
-     "n" #'org-add-note
-     "p" #'org-set-property
-     "s" #'org-insert-subheading
-     "t" #'org-set-tags-command
-     )
-   )
- )
+; (map!
+;  (:prefix "C-c"
+;    :gnvime "i"       #'ts/open-org-inbox
+;    :gnvime "l"       #'org-store-link
+;    :gnvime "a"       #'org-agenda
+;    :gnvime "c"       #'org-capture
+;    :gnvime "b"       #'org-switchb)
+;
+;  (:prefix "C-c r"
+;    :gnvime "d"       #'ts/new-daily-review
+;    :gnvime "w"       #'ts/new-weekly-review
+;    :gnvime "m"       #'ts/new-monthly-review)
+;
+;  (:after org
+;    :map org-mode-map
+;    :nvime "M-h" #'org-metaleft
+;    :nvime "M-l" #'org-metaright
+;    :nvime "M-J" #'org-shiftmetadown
+;    :nvime "M-K" #'org-shiftmetaup
+;    :nvime "M-H" #'org-shiftmetaleft
+;    :nvime "M-L" #'org-shiftmetaright
+;    :nvime "C-j" #'evil-window-down
+;    :nvime "C-k" #'evil-window-up
+;    :nvime "C-c t l" #'org-toggle-link-display
+;    :nvme "L" #'org-shiftright
+;    :nvme "H" #'org-shiftleft
+;    ;; :nvme "K" #'org-shiftup
+;    ;; :nvme "J" #'org-shiftdown
+;    :nvime "s-<return>" #'org-meta-return
+;
+;    :localleader
+;    "s" nil
+;    "t" nil
+;    "T" nil
+;    "d" nil
+;    "i" nil
+;    (:prefix ("s" . "subtrees")
+;      "a" #'org-toggle-archive-tag
+;      "A" #'org-archive-subtree
+;      "b" #'org-tree-to-indirect-buffer
+;      "h" #'org-promote-subtree
+;      "j" #'org-move-subtree-down
+;      "k" #'org-move-subtree-up
+;      "l" #'org-demote-subtree
+;      "n" #'org-narrow-to-subtree
+;      "N" #'widen
+;      "r" #'org-refile
+;      "s" #'org-sparse-tree
+;      "S" #'org-sort
+;      )
+;    (:prefix ("T" . "toggles")
+;      "c" #'org-toggle-checkbox
+;      "e" #'org-toggle-pretty-entities
+;      "i" #'org-toggle-inline-images
+;      "l" #'org-toggle-link-display
+;      "t" #'org-show-todo-tree
+;      "T" #'org-todo
+;      "h" #'org-toggle-heading
+;      )
+;    (:prefix ("d" . "time")
+;      "d" #'org-deadline
+;      "s" #'org-schedule
+;      "t" #'org-time-stamp
+;      "T" #'org-time-stamp-inactive
+;      )
+;    (:prefix ("t" . "tables")
+;      "a" #'org-table-align
+;      "b" #'org-table-blank-field
+;      "c" #'org-table-convert
+;      "dc" #'org-table-delete-column
+;      "dr" #'org-table-kill-row
+;      "e" #'org-table-eval-formula
+;      "E" #'org-table-export
+;      "h" #'org-table-previous-field
+;      "H" #'org-table-move-column-left
+;      "ic" #'org-table-insert-column
+;      "ih" #'org-table-insert-hline
+;      "iH" #'org-table-hline-and-move
+;      "ir" #'org-table-insert-row
+;      "I" #'org-table-import
+;      "j" #'org-table-next-row
+;      "J" #'org-table-move-row-down
+;      "K" #'org-table-move-row-up
+;      "l" #'org-table-next-field
+;      "L" #'org-table-move-column-right
+;      "n" #'org-table-create
+;      "N" #'org-table-create-with-table.el
+;      "r" #'org-table-recalculate
+;      "s" #'org-table-sort-lines
+;      "tf" #'org-table-toggle-formula-debugger
+;      "to" #'org-table-toggle-coordinate-overlays
+;      "w" #'org-table-wrap-region
+;      )
+;    (:prefix ("i" . "insertion")
+;      "b" #'org-insert-structure-template
+;      "d" #'org-insert-drawer
+;      "e" #'org-set-effort
+;      "f" #'org-footnote-new
+;      "h" #'org-insert-heading
+;      "H" #'org-insert-heading-after-current
+;      "i" #'org-insert-item
+;      "K" #'spacemacs/insert-keybinding-org
+;      "l" #'org-insert-link
+;      "n" #'org-add-note
+;      "p" #'org-set-property
+;      "s" #'org-insert-subheading
+;      "t" #'org-set-tags-command
+;      )
+;    )
+;  )
