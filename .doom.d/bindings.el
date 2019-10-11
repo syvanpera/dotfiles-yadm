@@ -106,7 +106,7 @@
      :desc "Email"                :n  "m" #'mu4e
      :desc "Prodigy"              :n  "p" #'prodigy)
    (:prefix ("b" . "buffer")
-     :desc "Switch buffer"        :n  "b" #'ts/switch-buffer
+     ;; :desc "Switch buffer"        :n  "b" #'ts/switch-buffer
      ;; :desc "Kill this buffer"     :n  "d" #'kill-this-buffer
      ;; :desc "Kill buffer"          :n  "k" #'kill-buffer
      :desc "Open messages buffer" :n  "m" #'spacemacs/switch-to-messages-buffer

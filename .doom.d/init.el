@@ -6,8 +6,9 @@
  ;; doom-theme 'doom-palenight
  ;; doom-theme 'doom-one
  ;; doom-theme 'doom-gruvbox
- ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
- doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
+ doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
+ ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
+ ;; doom-font (font-spec :family "Iosevka Nerd Font" :size 12)
  exec-path (append exec-path '("/home/tuomo/go/bin"))
  )
 
@@ -198,29 +199,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#1d1f21" :foreground "#e9efea" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "CTDB" :family "FuraCode Nerd Font"))))
  '(font-lock-builtin-face ((t (:foreground "#61afef"))))
  '(font-lock-function-name-face ((t (:foreground "#61afef"))))
- '(solaire-hl-line-face ((t (:inherit hl-line :background "#363739"))))
+ '(org-headline-done ((t (:foreground "#717171" :strike-through t))))
+ '(outline-1 ((t (:foreground "#61afef" :background nil :weight bold))))
+ '(outline-3 ((t (:foreground "#f0c674" :weight bold))))
+ '(org-block ((t (:background "#222424"))))
  '(solaire-default-face ((t (:inherit default :background "#1e1e1e"))))
+ '(solaire-hl-line-face ((t (:inherit hl-line :background "#363739"))))
  '(whitespace-tab ((t (:background "#1e1e1e" :foreground "#3f4040")))))
-
-;; Gruvbox colors
-; (custom-set-faces
-;  ;; custom-set-faces was added by Custom.
-;  ;; If you edit it by hand, you could mess it up, so be careful.
-;  ;; Your init file should contain only one such instance.
-;  ;; If there is more than one, they won't work right.
-;  '(default ((t (:inherit nil :stipple nil :background "#151515" :foreground "#ebdbb2" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "CTDB" :family "FuraCode Nerd Font"))))
-;  '(hl-line ((t (:inherit nil :background "#3C3836"))))
-;  '(ivy-current-match ((t (:background "#3C3836"))))
-;  '(line-number-current-line ((t (:inherit (hl-line default) :foreground "orange" :background "#3C3836" :strike-through nil :underline nil :slant normal :weight bold))))
-;  '(mode-line ((t (:background "#3C3836" :foreground "#ada296" :box nil))))
-;  '(mode-line-inactive ((t (:background "#282828" :foreground "#4e4e4e" :box nil))))
-;  '(org-ellipsis ((t (:foreground "#fe8019" :background "#282828"))))
-;  '(org-level-4 ((t (:inherit org-level-3 :foreground "#d3869b"))))
-;  '(solaire-default-face ((t (:inherit default :background "#282828"))))
-;  '(solaire-hl-line-face ((t (:inherit hl-line :background "#3C3836"))))
-;  '(treemacs-root-face ((t (:inherit (variable-pitch font-lock-string-face) :weight bold :height 1.2))))
-;  '(variable-pitch ((t (:family "IBM Plex Sans"))))
-;  '(whitespace-tab ((t (:background "#282828" :foreground "#555556")))))

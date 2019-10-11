@@ -75,28 +75,29 @@
   ;;   :done "DONE")
   (setq +org-dir (expand-file-name "~/org/")
         org-directory (expand-file-name "~/org/")
-        org-inbox-file (concat org-directory "todo.org")
+        org-inbox-file (concat org-directory "inbox.org")
         org-snippets-file (concat org-directory "snippets.org")
         +org-capture-todo-file "todo.org"
         +org-capture-notes-file "notes.org"
         org-agenda-files (mapcar(lambda (s) (concat org-directory s))
-                                '("inbox.org" "todo.org" "tickler.org" "gcal"))
+                                '("inbox.org" "todo.org" "tickler.org"))
         ;; org-agenda-files '("~/org/inbox.org"
         ;;                    "~/org/todo.org"
         ;;                    "~/org/tickler.org")
         ;; org-refile-targets '(("~/org/todo.org" :maxlevel . 3)
         ;;                      ("~/org/someday.org" :level . 1)
         ;;                      ("~/org/tickler.org" :maxlevel . 2))
-        ;; org-archive-location (concat (ts/org-file-path "archive.org") "::* From %s")
+        org-archive-location (concat (ts/org-file-path "archive.org") "::* From %s")
         org-pretty-entities t
         org-use-fast-todo-selection t
         org-treat-S-cursor-todo-selection-as-state-change t
         org-goto-interface 'outline-path-completion
         org-outline-path-complete-in-steps nil
-        org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
+        ;; org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
         org-tags-column -80
         org-log-done 'time
         org-bullets-bullet-list '("●" "◉" "○" "✿" "✸")
+        ;; org-bullets-bullet-list '("☰" "◉" "○" "✿" "✸")
         org-ellipsis " "
         org-tag-alist '(
                         ;; Context
@@ -112,7 +113,16 @@
         org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
                             (sequence "NEXT(n)" "WAITING(w)" "LATER(l)" "|" "CANCELLED(c)"))
         ;; DRAFT is for blog posts, used in blog org files
-        org-todo-keyword-faces '(("DRAFT" . (:foreground "#fabd2f" :weight bold)))
+        org-todo-keyword-faces '(("TODO" . (:foreground "#b5bd68" :underline t))
+                                 ("NEXT" . (:foreground "#8abeb7" :underline t))
+                                 ("WAITING" . (:foreground "#fabd2f" :underline t))
+                                 ("LATER" . (:foreground "#de935f" :underline t))
+                                 ("DONE" . (:foreground "#717171" :strike-through t))
+                                 ("CANCELLED" . (:foreground "#cc6666"  :strike-through t))
+                                 ("DRAFT" . (:foreground "#fabd2f" :underline t)))
+        org-priority-faces '((65 :foreground "#e06c75")
+                             (66 :foreground "#61afef")
+                             (67 :foreground "#b5bd68"))
         org-capture-templates '(("t" "Todo" entry
                                  (file +org-capture-todo-file)
                                  "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
@@ -178,35 +188,42 @@
   ;;                         :immediate-finish t :kill-buffer t))
   )
 
-; (map!
-;  (:prefix "C-c"
-;    :gnvime "i"       #'ts/open-org-inbox
-;    :gnvime "l"       #'org-store-link
-;    :gnvime "a"       #'org-agenda
-;    :gnvime "c"       #'org-capture
-;    :gnvime "b"       #'org-switchb)
+(map!
+ (:prefix "C-c"
+   :gnvime "i"       #'ts/open-org-inbox
+   :gnvime "l"       #'org-store-link
+   :gnvime "a"       #'org-agenda
+   :gnvime "c"       #'org-capture
+   :gnvime "b"       #'org-switchb)
 ;
 ;  (:prefix "C-c r"
 ;    :gnvime "d"       #'ts/new-daily-review
 ;    :gnvime "w"       #'ts/new-weekly-review
 ;    :gnvime "m"       #'ts/new-monthly-review)
 ;
-;  (:after org
-;    :map org-mode-map
-;    :nvime "M-h" #'org-metaleft
-;    :nvime "M-l" #'org-metaright
-;    :nvime "M-J" #'org-shiftmetadown
-;    :nvime "M-K" #'org-shiftmetaup
-;    :nvime "M-H" #'org-shiftmetaleft
-;    :nvime "M-L" #'org-shiftmetaright
-;    :nvime "C-j" #'evil-window-down
-;    :nvime "C-k" #'evil-window-up
-;    :nvime "C-c t l" #'org-toggle-link-display
-;    :nvme "L" #'org-shiftright
-;    :nvme "H" #'org-shiftleft
-;    ;; :nvme "K" #'org-shiftup
-;    ;; :nvme "J" #'org-shiftdown
-;    :nvime "s-<return>" #'org-meta-return
+ (:after org
+   :map org-mode-map
+   :nvime "s-h" #'org-metaleft
+   :nvime "s-l" #'org-metaright
+   :nvime "s-k" #'org-metaup
+   :nvime "s-j" #'org-metadown
+   :nvime "s-J" #'org-shiftmetadown
+   :nvime "s-K" #'org-shiftmetaup
+   :nvime "s-H" #'org-shiftmetaleft
+   :nvime "s-L" #'org-shiftmetaright
+   :nvime "C-j" #'evil-window-down
+   :nvime "C-k" #'evil-window-up
+   :nvime "C-c t l" #'org-toggle-link-display
+   :nvme "L" #'org-shiftright
+   :nvme "H" #'org-shiftleft
+   :nvme "K" #'org-shiftup
+   :nvme "J" #'org-shiftdown
+   :nvime "s-<return>" #'org-meta-return
+
+   (:leader
+     (:prefix ("/" . "search")
+       :desc "Org sparse tree"             :n  "s" #'org-sparse-tree
+       :desc "Org tags sparse tree"        :n  "t" #'org-tags-sparse-tree))))
 ;
 ;    :localleader
 ;    "s" nil

@@ -82,26 +82,26 @@
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t))
 
-(def-package! org-gcal
-  :after org
-  :commands (org-gcal-sync
-             org-gcal-fetch
-             org-gcal-post-at-point
-             org-gcal-delete-at-point)
-  :config
-  (load-file "~/.emacs-secrets.el")
-  ;; hack to avoid the deferred.el error
-  (defun org-gcal--notify (title mes)
-    (message "org-gcal::%s - %s" title mes)))
+; (def-package! org-gcal
+;   :after org
+;   :commands (org-gcal-sync
+;              org-gcal-fetch
+;              org-gcal-post-at-point
+;              org-gcal-delete-at-point)
+;   :config
+;   (load-file "~/.emacs-secrets.el")
+;   ;; hack to avoid the deferred.el error
+;   (defun org-gcal--notify (title mes)
+;     (message "org-gcal::%s - %s" title mes)))
 
-(def-package! org-gtasks
-  :after org
-  :config
-  (load-file "~/.emacs-secrets.el")
-  (org-gtasks-register-account :name "Gmail"
-                               :directory "~/org/gtasks/"
-                               :client-id org-gtasks-client-id
-                               :client-secret org-gtasks-client-secret))
+; (def-package! org-gtasks
+;   :after org
+;   :config
+;   (load-file "~/.emacs-secrets.el")
+;   (org-gtasks-register-account :name "Gmail"
+;                                :directory "~/org/gtasks/"
+;                                :client-id org-gtasks-client-id
+;                                :client-secret org-gtasks-client-secret))
 
 (def-package! ox-hugo
   :after ox)
@@ -134,6 +134,11 @@
                                          :tag "bo")))
   :config
   (org-super-agenda-mode))
+
+(def-package! org-fancy-priorities
+  :hook (org-mode . org-fancy-priorities-mode)
+  :config
+  (setq org-fancy-priorities-list '("■" "■" "■")))
 
 ;; (load! "email")     ;; Yes, I read my email with emacs too
 (load! "languages") ;; Programming stuff
