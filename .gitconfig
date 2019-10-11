@@ -1,6 +1,7 @@
 [hub]
   protocol = https
 [alias]
+  s = status --short
   st = status
   co = checkout
   count   = !git shortlog -sn
