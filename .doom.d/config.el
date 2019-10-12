@@ -7,6 +7,7 @@
       calendar-week-start-day 1)
 
 (add-to-list 'load-path (expand-file-name "elisp" doom-private-dir))
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
 (require 'simpleclip)
 (simpleclip-mode 1)
@@ -43,12 +44,10 @@
                                       (file-node-closed . treemacs-visit-node-in-most-recently-used-window)
                                       (tag-node-open . treemacs-toggle-node-prefer-tag-visit)
                                       (tag-node-closed . treemacs-toggle-node-prefer-tag-visit)
-                                      (tag-node . treemacs-visit-node-no-split))))
-  ;; (treemacs-follow-mode t)
-  )
+                                      (tag-node . treemacs-visit-node-no-split)))))
 
-; (after! projectile
-;   (setq projectile-git-command "git ls-files -co --exclude-standard | grep -v '^node_modules/' | tr '\\n' '\\0'"))
+;; (after! projectile
+;;   (setq projectile-git-command "git ls-files -co --exclude-standard | grep -v '^node_modules/' | tr '\\n' '\\0'"))
 
 (after! projectile
   (setq projectile-enable-caching nil
@@ -69,8 +68,8 @@
         deft-use-filename-as-title t)
   (add-hook! 'deft-mode-hook #'hl-line-mode))
 
-(after! evil-snipe
-  (setq evil-snipe-repeat-scope 'line))
+;; (after! evil-snipe
+;;   (setq evil-snipe-repeat-scope 'line))
 
 (after! prodigy
   (prodigy-define-service
@@ -81,27 +80,6 @@
     :tags '(personal)
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t))
-
-; (def-package! org-gcal
-;   :after org
-;   :commands (org-gcal-sync
-;              org-gcal-fetch
-;              org-gcal-post-at-point
-;              org-gcal-delete-at-point)
-;   :config
-;   (load-file "~/.emacs-secrets.el")
-;   ;; hack to avoid the deferred.el error
-;   (defun org-gcal--notify (title mes)
-;     (message "org-gcal::%s - %s" title mes)))
-
-; (def-package! org-gtasks
-;   :after org
-;   :config
-;   (load-file "~/.emacs-secrets.el")
-;   (org-gtasks-register-account :name "Gmail"
-;                                :directory "~/org/gtasks/"
-;                                :client-id org-gtasks-client-id
-;                                :client-secret org-gtasks-client-secret))
 
 (def-package! ox-hugo
   :after ox)
@@ -116,31 +94,7 @@
 (def-package! evil-iedit-state
   :after evil)
 
-(def-package! org-super-agenda
-  :after org-agenda
-  :init
-  (setq org-super-agenda-groups '((:name "Today"
-                                         :time-grid t
-                                         :scheduled today)
-                                  (:name "Due today"
-                                         :deadline today)
-                                  (:name "Important"
-                                         :priority "A")
-                                  (:name "Overdue"
-                                         :deadline past)
-                                  (:name "Due soon"
-                                         :deadline future)
-                                  (:name "Big Outcomes"
-                                         :tag "bo")))
-  :config
-  (org-super-agenda-mode))
-
-(def-package! org-fancy-priorities
-  :hook (org-mode . org-fancy-priorities-mode)
-  :config
-  (setq org-fancy-priorities-list '("■" "■" "■")))
-
-;; (load! "email")     ;; Yes, I read my email with emacs too
+(load! "email")     ;; Yes, I read my email with emacs too
 (load! "languages") ;; Programming stuff
 (load! "ui")        ;; UI modifications
 (load! "org")       ;; Org mode stuff

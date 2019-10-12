@@ -41,25 +41,25 @@ if prefix argument ARG is given, switch to it in an other, possibly new window."
 ;;   (interactive)
 ;;   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
-(defun ts/open-org-inbox ()
-  "Open org inbox file."
-  (interactive)
-  (find-file org-default-notes-file))
-
 (defun ts/open-org-directory ()
   "Open org directory."
   (interactive)
   (counsel-find-file org-directory))
 
+(defun ts/open-org-inbox ()
+  "Open org inbox file."
+  (interactive)
+  (find-file (concat org-directory +org-capture-todo-file)))
+
+(defun ts/open-org-notes ()
+  "Open org notes file."
+  (interactive)
+  (find-file (concat org-directory +org-capture-notes-file)))
+
 (defun ts/open-org-project-todo-file ()
   "Open project org todo file."
   (interactive)
   (find-file (+org-capture-project-todo-file)))
-
-(defun ts/open-org-todo-file ()
-  "Open org todo file."
-  (interactive)
-  (find-file (concat org-directory +org-capture-todo-file)))
 
 (defun ts/open-scripts-directory ()
   "Open scripts directory."

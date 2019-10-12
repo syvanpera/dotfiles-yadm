@@ -1,4 +1,4 @@
-;;; ~/dotfiles/emacs/doom.d/+languages.el -*- lexical-binding: t; -*-
+;;; ~/dotfiles/emacs/doom.d/languages.el -*- lexical-binding: t; -*-
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook 'goto-address-mode)
@@ -69,3 +69,5 @@
 
 (def-package! godoctor
   :after go-mode)
+
+;;; languages.el ends here

@@ -4,6 +4,7 @@
 
 (map!
  ;; --- Global keybindings ---------------------------
+ :gnvime "C-c d" #'deft
  :gnvime "C-c C-r" #'ivy-resume
  :gnvime "C-s" #'counsel-grep-or-swiper
  :gnvime "M-p" #'counsel-projectile-find-file
@@ -122,8 +123,8 @@
    (:prefix ("f" . "file")
      (:prefix ("o" . "open")
        :desc "Open org folder"       :n  "o" #'ts/open-org-directory
-       :desc "Open scripts folder"   :n  "s" #'ts/open-scripts-directory
-       :desc "Open org todo file"    :n  "t" #'ts/open-org-todo-file
+       :desc "Open org inbox file"   :n  "i" #'ts/open-org-inbox
+       :desc "Open org notes file"   :n  "n" #'ts/open-org-notes
        :desc "Open project org file" :n  "p" #'ts/open-org-project-todo-file))
    (:prefix ("e" . "errors")
      :desc "List errors"          :n  "l" #'flycheck-list-errors

@@ -1,4 +1,4 @@
-;;; ~/dotfiles/emacs/doom.d/+org.el -*- lexical-binding: t; -*-
+;;; ~/dotfiles/emacs/doom.d/org.el -*- lexical-binding: t; -*-
 
 (defun ts/org-file-path (filename)
   "Return the absolute address of an org file, given its relative name."
@@ -61,33 +61,75 @@
 ;;                                :client-id org-gtasks-client-id
 ;;                                :client-secret org-gtasks-client-secret))
 
+
+; (def-package! org-gcal
+;   :after org
+;   :commands (org-gcal-sync
+;              org-gcal-fetch
+;              org-gcal-post-at-point
+;              org-gcal-delete-at-point)
+;   :config
+;   (load-file "~/.emacs-secrets.el")
+;   ;; hack to avoid the deferred.el error
+;   (defun org-gcal--notify (title mes)
+;     (message "org-gcal::%s - %s" title mes)))
+
+; (def-package! org-gtasks
+;   :after org
+;   :config
+;   (load-file "~/.emacs-secrets.el")
+;   (org-gtasks-register-account :name "Gmail"
+;                                :directory "~/org/gtasks/"
+;                                :client-id org-gtasks-client-id
+;                                :client-secret org-gtasks-client-secret))
+
+(def-package! org-super-agenda
+  :after org-agenda
+  :init
+  (setq org-super-agenda-groups '((:name "Today"
+                                         :time-grid t
+                                         :scheduled today)
+                                  (:name "Due today"
+                                         :deadline today)
+                                  (:name "Important"
+                                         :priority "A")
+                                  (:name "Overdue"
+                                         :deadline past)
+                                  (:name "Due soon"
+                                         :deadline future)
+                                  (:name "Big Outcomes"
+                                         :tag "bo")))
+  :config
+  (org-super-agenda-mode))
+
+(def-package! org-fancy-priorities
+  :hook (org-mode . org-fancy-priorities-mode)
+  :config
+  (setq org-fancy-priorities-list '("■" "■" "■")))
+
 (after! org
   (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  ;; (require 'ob-elm)
   ;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
   ;; (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
-  ;; (set-pretty-symbols! 'org-mode
-  ;;   :name "#+NAME:"
-  ;;   :src_block "#+BEGIN_SRC"
-  ;;   :src_block_end "#+END_SRC"
-  ;;   :todo "TODO"
-  ;;   :done "DONE")
   (setq +org-dir (expand-file-name "~/org/")
         org-directory (expand-file-name "~/org/")
-        org-inbox-file (concat org-directory "inbox.org")
-        org-snippets-file (concat org-directory "snippets.org")
-        +org-capture-todo-file "todo.org"
+        +org-capture-todo-file "inbox.org"
         +org-capture-notes-file "notes.org"
         org-agenda-files (mapcar(lambda (s) (concat org-directory s))
-                                '("inbox.org" "todo.org" "tickler.org"))
+                                '("inbox.org" "orgzly-inbox.org" "todo.org" "tickler.org" "projects.org"))
         ;; org-agenda-files '("~/org/inbox.org"
         ;;                    "~/org/todo.org"
         ;;                    "~/org/tickler.org")
-        ;; org-refile-targets '(("~/org/todo.org" :maxlevel . 3)
-        ;;                      ("~/org/someday.org" :level . 1)
-        ;;                      ("~/org/tickler.org" :maxlevel . 2))
-        org-archive-location (concat (ts/org-file-path "archive.org") "::* From %s")
+        org-refile-use-outline-path 'file
+        org-outline-path-complete-in-steps nil
+        org-refile-allow-creating-parent-nodes 'confirm
+        org-refile-targets '(("~/org/todo.org" :maxlevel . 3)
+                             ("~/org/someday.org" :level . 1)
+                             ("~/org/tickler.org" :maxlevel . 2)
+                             ("~/org/projects.org" :maxlevel . 2))
+        ;; org-archive-location (concat (ts/org-file-path "archive.org") "::* From %s")
+        org-archive-location "~/org/archive.org::* From %s"
         org-pretty-entities t
         org-use-fast-todo-selection t
         org-treat-S-cursor-todo-selection-as-state-change t
@@ -96,36 +138,47 @@
         ;; org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
         org-tags-column -80
         org-log-done 'time
-        org-bullets-bullet-list '("●" "◉" "○" "✿" "✸")
+        org-log-into-drawer t
+        org-log-state-notes-insert-after-drawers nil
+        org-bullets-bullet-list '("⚙" "✿" "◉" "○" "✸")
+        ;; org-bullets-bullet-list '("●" "◉" "○" "✿" "✸")
         ;; org-bullets-bullet-list '("☰" "◉" "○" "✿" "✸")
         org-ellipsis " "
-        org-tag-alist '(
-                        ;; Context
+        org-tag-alist '(;; Context
                         (:startgroup)
-                        ("@home" . ?h)
-                        ("@work" . ?w)
-                        ("@houston" . ?o)
-                        ("@client" . ?c)
+                        ("home" . ?h)
+                        ("work" . ?w)
                         (:endgroup)
-                        ("work" . ?W)
-                        ("personal" . ?P)
+                        (:startgroup)
+                        ("@home" . ?e)
+                        ("@work" . ?k)
+                        ("@houston" . ?n)
+                        ("@client" . ?c)
+                        ("@online" . ?o)
+                        ("@phone" . ?p)
+                        (:endgroup)
                         )
-        org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
-                            (sequence "NEXT(n)" "WAITING(w)" "LATER(l)" "|" "CANCELLED(c)"))
+        org-todo-keywords '((sequence "✎ TODO(t)" "☛ NEXT(n)" "|" "✔ DONE(d)")
+                            (sequence " WAITING(w@/!)" " HOLD(h@/!)" "|" "✗ CANCELLED(c@/!)"))
+        ;; org-todo-keywords '((sequence "✎ TODO(t)" " WAITING(w)" "|" "✔ DONE(d)" "✗ CANCELLED(c)"))
         ;; DRAFT is for blog posts, used in blog org files
-        org-todo-keyword-faces '(("TODO" . (:foreground "#b5bd68" :underline t))
-                                 ("NEXT" . (:foreground "#8abeb7" :underline t))
-                                 ("WAITING" . (:foreground "#fabd2f" :underline t))
-                                 ("LATER" . (:foreground "#de935f" :underline t))
-                                 ("DONE" . (:foreground "#717171" :strike-through t))
-                                 ("CANCELLED" . (:foreground "#cc6666"  :strike-through t))
+        org-todo-keyword-faces '(("TODO" . (:foreground "#61afef" :underline t))
+                                 ("✎ TODO" . (:foreground "#61afef" :underline t))
+                                 ("☛ NEXT" . (:foreground "#8abeb7" :underline t))
+                                 (" WAITING" . (:foreground "#fabd2f" :underline t))
+                                 (" HOLD" . (:foreground "#de935f" :underline t))
+                                 ("✔ DONE" . (:foreground "#b5bd68" :underline t))
+                                 ("✗ CANCELLED" . (:foreground "#cc6666" :underline t))
                                  ("DRAFT" . (:foreground "#fabd2f" :underline t)))
         org-priority-faces '((65 :foreground "#e06c75")
                              (66 :foreground "#61afef")
                              (67 :foreground "#b5bd68"))
         org-capture-templates '(("t" "Todo" entry
-                                 (file +org-capture-todo-file)
-                                 "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
+                                 (file+headline +org-capture-todo-file "Tasks")
+                                 "* ✎ TODO %?\n%a" :prepend t :kill-buffer t)
+                                ("T" "Tickler" entry
+                                 (file+headline "~/org/tickler.org" "Tickler")
+                                 "* %i%? \n %U")
                                 ("n" "Note" entry
                                  (file +org-capture-notes-file)
                                  "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
@@ -146,7 +199,7 @@
                                 ("p" "Templates for projects")
                                 ("pt" "Project: Todo" entry  ; {project-root}/todo.org
                                  (file +org-capture-project-todo-file)
-                                 "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
+                                 "* ✎ TODO %?\n%i\n%a" :prepend t :kill-buffer t)
                                 ("pn" "Project: Note" entry  ; {project-root}/notes.org
                                  (file +org-capture-project-notes-file)
                                  "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
@@ -305,3 +358,5 @@
 ;      )
 ;    )
 ;  )
+
+;;; org.el ends here

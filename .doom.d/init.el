@@ -159,8 +159,8 @@
        ;;vala              ; GObjective-C
 
        :email
-       ;;(mu4e +gmail)       ; WIP
-       ;;notmuch             ; WIP
+       (mu4e +gmail)       ; WIP
+       notmuch             ; WIP
        ;;(wanderlust +gmail) ; WIP
 
        ;; Applications are complex and opinionated modules that transform Emacs
@@ -207,4 +207,5 @@
  '(org-block ((t (:background "#222424"))))
  '(solaire-default-face ((t (:inherit default :background "#1e1e1e"))))
  '(solaire-hl-line-face ((t (:inherit hl-line :background "#363739"))))
- '(whitespace-tab ((t (:background "#1e1e1e" :foreground "#3f4040")))))
+ '(whitespace-tab ((t (:background "#1e1e1e" :foreground "#3f4040"))))
+ '(mu4e-view-body-face ((t (:background nil)))))
