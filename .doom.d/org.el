@@ -117,22 +117,26 @@
         +org-capture-todo-file "inbox.org"
         +org-capture-notes-file "notes.org"
         org-agenda-files (mapcar(lambda (s) (concat org-directory s))
-                                '("inbox.org" "orgzly-inbox.org" "todo.org" "tickler.org" "projects.org"))
+                                '("inbox.org" "orgzly-inbox.org" "todo.org" "tickler.org" "reviews.org" "caverion.org" "houston.org"))
+        ;; org-agenda-window-setup 'reorganize-frame
         ;; org-agenda-files '("~/org/inbox.org"
         ;;                    "~/org/todo.org"
         ;;                    "~/org/tickler.org")
         org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm
-        org-refile-targets '(("~/org/todo.org" :maxlevel . 3)
-                             ("~/org/someday.org" :level . 1)
-                             ("~/org/tickler.org" :maxlevel . 2)
-                             ("~/org/projects.org" :maxlevel . 2))
+        org-refile-targets '((nil :maxlevel . 3) (org-agenda-files :maxlevel . 3))
+        ;; org-refile-targets '(("~/org/todo.org" :maxlevel . 3)
+        ;;                      ("~/org/someday.org" :level . 1)
+        ;;                      ("~/org/tickler.org" :maxlevel . 2)
+        ;;                      ("~/org/projects.org" :maxlevel . 2)
+        ;;                      ("~/org/workflow.org" :maxlevel . 2))
         ;; org-archive-location (concat (ts/org-file-path "archive.org") "::* From %s")
         org-archive-location "~/org/archive.org::* From %s"
         org-pretty-entities t
         org-use-fast-todo-selection t
-        org-treat-S-cursor-todo-selection-as-state-change t
+        ;; org-treat-S-cursor-todo-selection-as-state-change t
+        org-treat-S-cursor-todo-selection-as-state-change nil
         org-goto-interface 'outline-path-completion
         org-outline-path-complete-in-steps nil
         ;; org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
@@ -158,24 +162,22 @@
                         ("@phone" . ?p)
                         (:endgroup)
                         )
-        org-todo-keywords '((sequence "✎ TODO(t)" "☛ NEXT(n)" "|" "✔ DONE(d)")
-                            (sequence " WAITING(w@/!)" " HOLD(h@/!)" "|" "✗ CANCELLED(c@/!)"))
-        ;; org-todo-keywords '((sequence "✎ TODO(t)" " WAITING(w)" "|" "✔ DONE(d)" "✗ CANCELLED(c)"))
+        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+                            (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))
         ;; DRAFT is for blog posts, used in blog org files
-        org-todo-keyword-faces '(("TODO" . (:foreground "#61afef" :underline t))
-                                 ("✎ TODO" . (:foreground "#61afef" :underline t))
-                                 ("☛ NEXT" . (:foreground "#8abeb7" :underline t))
-                                 (" WAITING" . (:foreground "#fabd2f" :underline t))
-                                 (" HOLD" . (:foreground "#de935f" :underline t))
-                                 ("✔ DONE" . (:foreground "#b5bd68" :underline t))
-                                 ("✗ CANCELLED" . (:foreground "#cc6666" :underline t))
+        org-todo-keyword-faces '(("TODO" . (:foreground "#cc6666" :underline t))
+                                 ("NEXT" . (:foreground "#8abeb7" :underline t))
+                                 ("WAITING" . (:foreground "#fabd2f" :underline t))
+                                 ("HOLD" . (:foreground "#de935f" :underline t))
+                                 ("DONE" . (:foreground "#b5bd68" :underline t))
+                                 ("CANCELLED" . (:foreground "#717171" :underline t))
                                  ("DRAFT" . (:foreground "#fabd2f" :underline t)))
         org-priority-faces '((65 :foreground "#e06c75")
                              (66 :foreground "#61afef")
                              (67 :foreground "#b5bd68"))
         org-capture-templates '(("t" "Todo" entry
                                  (file+headline +org-capture-todo-file "Tasks")
-                                 "* ✎ TODO %?\n%a" :prepend t :kill-buffer t)
+                                 "* TODO %?\n%a" :prepend t :kill-buffer t)
                                 ("T" "Tickler" entry
                                  (file+headline "~/org/tickler.org" "Tickler")
                                  "* %i%? \n %U")
@@ -199,7 +201,7 @@
                                 ("p" "Templates for projects")
                                 ("pt" "Project: Todo" entry  ; {project-root}/todo.org
                                  (file +org-capture-project-todo-file)
-                                 "* ✎ TODO %?\n%i\n%a" :prepend t :kill-buffer t)
+                                 "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
                                 ("pn" "Project: Note" entry  ; {project-root}/notes.org
                                  (file +org-capture-project-notes-file)
                                  "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
@@ -241,6 +243,19 @@
   ;;                         :immediate-finish t :kill-buffer t))
   )
 
+;; (after! org-capture
+;;   (defvar ts/org-contacts-template "* %(org-contacts-template-name)
+;;  :PROPERTIES:
+;; :ADDRESS: %^{289 Cleveland St. Brooklyn, 11206 NY, USA}
+;; :BIRTHDAY: %^{yyyy-mm-dd}
+;; :EMAIL: %(org-contacts-template-email)
+;; :NOTE: %^{NOTE}
+;; :END:" "Template for org-contacts.")
+;;   (org-capture-templates
+;;    `(("c" "Contact" entry (file+headline "~/org/contacts.org" "Friends"),
+;;       ts/org-contacts-template
+;;       :empty-lines 1))))
+
 (map!
  (:prefix "C-c"
    :gnvime "i"       #'ts/open-org-inbox
@@ -255,22 +270,32 @@
 ;    :gnvime "m"       #'ts/new-monthly-review)
 ;
  (:after org
+   :map org-agenda-mode-map
+   :nvme "F" #'org-agenda-follow-mode
+   :nvme "n" #'org-agenda-next-line
+   :nvme "p" #'org-agenda-previous-line
+   :nvme "N" #'org-agenda-next-item
+   :nvme "P" #'org-agenda-previous-item
+   :nvme "f" #'org-agenda-later
+   :nvme "b" #'org-agenda-earlier
+   :nvme "M-s" #'org-save-all-org-buffers
+
    :map org-mode-map
-   :nvime "s-h" #'org-metaleft
-   :nvime "s-l" #'org-metaright
-   :nvime "s-k" #'org-metaup
-   :nvime "s-j" #'org-metadown
-   :nvime "s-J" #'org-shiftmetadown
-   :nvime "s-K" #'org-shiftmetaup
-   :nvime "s-H" #'org-shiftmetaleft
-   :nvime "s-L" #'org-shiftmetaright
-   :nvime "C-j" #'evil-window-down
-   :nvime "C-k" #'evil-window-up
-   :nvime "C-c t l" #'org-toggle-link-display
+   ;; :nvime "s-h" #'org-metaleft
+   ;; :nvime "s-l" #'org-metaright
+   ;; :nvime "s-k" #'org-metaup
+   ;; :nvime "s-j" #'org-metadown
+   ;; :nvime "s-J" #'org-shiftmetadown
+   ;; :nvime "s-K" #'org-shiftmetaup
+   ;; :nvime "s-H" #'org-shiftmetaleft
+   ;; :nvime "s-L" #'org-shiftmetaright
    :nvme "L" #'org-shiftright
    :nvme "H" #'org-shiftleft
    :nvme "K" #'org-shiftup
    :nvme "J" #'org-shiftdown
+   :nvime "C-j" #'evil-window-down
+   :nvime "C-k" #'evil-window-up
+   :nvime "C-c t l" #'org-toggle-link-display
    :nvime "s-<return>" #'org-meta-return
 
    (:leader
