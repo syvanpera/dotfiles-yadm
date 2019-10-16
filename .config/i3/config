@@ -79,7 +79,7 @@ for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [class="Pamac-manager"] floating enable
 for_window [class="VirtualBox Manager"] floating enable
 for_window [class="Gcolor3"] floating enable
-for_window [title="^org-capture$"] floating enable, resize set 1440 px 500 px, move absolute position center
+for_window [title="^org-capture$"] floating enable, resize set 1440 px 500 px, move position center
 
 # kill focused window
 bindsym $mod+q kill
