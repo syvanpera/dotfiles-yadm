@@ -4,7 +4,8 @@
       user-mail-address "tuomo.syvanpera@gmail.com")
 
 (setq system-time-locale "C"
-      calendar-week-start-day 1)
+      calendar-week-start-day 1
+      read-quoted-char-radix 16)
 
 (add-to-list 'load-path (expand-file-name "elisp" doom-private-dir))
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
@@ -48,6 +49,9 @@
 
 ;; (after! projectile
 ;;   (setq projectile-git-command "git ls-files -co --exclude-standard | grep -v '^node_modules/' | tr '\\n' '\\0'"))
+
+(after! plantuml
+  (setq plantuml-default-exec-mode 'jar))
 
 (after! projectile
   (setq projectile-enable-caching nil

@@ -35,8 +35,9 @@
 
         org-mu4e-link-query-in-headers-mode nil
 
-        mu4e-maildir-shortcuts '(("/gmail/INBOX"   . ?g)
-                                 ("/houston/INBOX" . ?h))
+        mu4e-maildir-shortcuts '(("/gmail/INBOX"               . ?g)
+                                 ("/houston/INBOX"             . ?h)
+                                 ("/houston/[Gmail].Sent Mail" . ?s))
 
         mu4e-bookmarks '(("flag:unread" "Unread messages" ?u)
                          ("date:today..now" "Today's messages" ?t)

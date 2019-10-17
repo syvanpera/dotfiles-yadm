@@ -4,42 +4,6 @@
   "Return the absolute address of an org file, given its relative name."
   (concat (file-name-as-directory org-directory) filename))
 
-(defun ts/new-daily-review ()
-  (interactive)
-  (let ((org-capture-templates '(("d" "Review: Daily Review" entry (file+olp+datetree "/tmp/reviews.org")
-                                  (file "templates/dailyreview.org")))))
-    (progn
-      (org-capture nil "d")
-      (org-capture-finalize t)
-      (org-speed-move-safe 'outline-up-heading)
-      (org-narrow-to-subtree)
-      (fetch-calendar)
-      (org-clock-in))))
-
-(defun ts/new-weekly-review ()
-  (interactive)
-  (let ((org-capture-templates '(("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
-                                  (file "templates/weeklyreview.org")))))
-    (progn
-      (org-capture nil "w")
-      (org-capture-finalize t)
-      (org-speed-move-safe 'outline-up-heading)
-      (org-narrow-to-subtree)
-      (fetch-calendar)
-      (org-clock-in))))
-
-(defun ts/new-monthly-review ()
-  (interactive)
-  (let ((org-capture-templates '(("m" "Review: Monthly Review" entry (file+olp+datetree "/tmp/reviews.org")
-                                  (file "templates/monthlyreview.org")))))
-    (progn
-      (org-capture nil "m")
-      (org-capture-finalize t)
-      (org-speed-move-safe 'outline-up-heading)
-      (org-narrow-to-subtree)
-      (fetch-calendar)
-      (org-clock-in))))
-
 (defun ts/org-hugo-new-subtree-post-capture-template ()
   "Returns `org-capture' template string for new Hugo post."
   (let* ((title (read-from-minibuffer "Post Title: "))
@@ -53,6 +17,39 @@
                  "%?\n")
                "\n")))
 
+(defun ts/new-daily-review ()
+  (interactive)
+  (let ((org-capture-templates '(("d" "Review: Daily Review" entry (file+olp+datetree "/tmp/reviews.org")
+                                  (file "~/org/templates/dailyreview.org")))))
+    (progn
+      (org-capture nil "d")
+      (org-capture-finalize t)
+      (org-speed-move-safe 'outline-up-heading)
+      (org-narrow-to-subtree)
+      (org-clock-in))))
+
+(defun ts/new-weekly-review ()
+  (interactive)
+  (let ((org-capture-templates '(("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
+                                  (file "~/org/templates/weeklyreview.org")))))
+    (progn
+      (org-capture nil "w")
+      (org-capture-finalize t)
+      (org-speed-move-safe 'outline-up-heading)
+      (org-narrow-to-subtree)
+      (org-clock-in))))
+
+(defun ts/new-monthly-review ()
+  (interactive)
+  (let ((org-capture-templates '(("m" "Review: Monthly Review" entry (file+olp+datetree "/tmp/reviews.org")
+                                  (file "~/org/templates/monthlyreview.org")))))
+    (progn
+      (org-capture nil "m")
+      (org-capture-finalize t)
+      (org-speed-move-safe 'outline-up-heading)
+      (org-narrow-to-subtree)
+      (org-clock-in))))
+
 ;; (after! org
 ;;   (require 'org-gtasks)
 ;;   (load-file "~/.emacs-secrets.el")
@@ -62,17 +59,17 @@
 ;;                                :client-secret org-gtasks-client-secret))
 
 
-; (def-package! org-gcal
-;   :after org
-;   :commands (org-gcal-sync
-;              org-gcal-fetch
-;              org-gcal-post-at-point
-;              org-gcal-delete-at-point)
-;   :config
-;   (load-file "~/.emacs-secrets.el")
-;   ;; hack to avoid the deferred.el error
-;   (defun org-gcal--notify (title mes)
-;     (message "org-gcal::%s - %s" title mes)))
+;; (def-package! org-gcal
+;;   :after org
+;;   :commands (org-gcal-sync
+;;              org-gcal-fetch
+;;              org-gcal-post-at-point
+;;              org-gcal-delete-at-point)
+;;   :config
+;;   (load-file "~/.emacs-secrets.el")
+;;   ;; hack to avoid the deferred.el error
+;;   (defun org-gcal--notify (title mes)
+;;     (message "org-gcal::%s - %s" title mes)))
 
 ; (def-package! org-gtasks
 ;   :after org
@@ -83,29 +80,29 @@
 ;                                :client-id org-gtasks-client-id
 ;                                :client-secret org-gtasks-client-secret))
 
-(def-package! org-super-agenda
-  :after org-agenda
-  :init
-  (setq org-super-agenda-groups '((:name "Today"
-                                         :time-grid t
-                                         :scheduled today)
-                                  (:name "Due today"
-                                         :deadline today)
-                                  (:name "Important"
-                                         :priority "A")
-                                  (:name "Overdue"
-                                         :deadline past)
-                                  (:name "Due soon"
-                                         :deadline future)
-                                  (:name "Big Outcomes"
-                                         :tag "bo")))
-  :config
-  (org-super-agenda-mode))
+;; (def-package! org-super-agenda
+;;   :after org-agenda
+;;   :init
+;;   (setq org-super-agenda-groups '((:name "Today"
+;;                                          :time-grid t
+;;                                          :scheduled today)
+;;                                   (:name "Due today"
+;;                                          :deadline today)
+;;                                   (:name "Important"
+;;                                          :priority "A")
+;;                                   (:name "Overdue"
+;;                                          :deadline past)
+;;                                   (:name "Due soon"
+;;                                          :deadline future)
+;;                                   (:name "Work"
+;;                                          :tag "WORK")))
+;;   :config
+;;   (org-super-agenda-mode))
 
 (def-package! org-fancy-priorities
   :hook (org-mode . org-fancy-priorities-mode)
   :config
-  (setq org-fancy-priorities-list '("■" "■" "■")))
+  (setq org-fancy-priorities-list '("▲" "■" "▼")))
 
 (after! org
   (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
@@ -117,15 +114,28 @@
         +org-capture-todo-file "inbox.org"
         +org-capture-notes-file "notes.org"
         org-agenda-files (mapcar(lambda (s) (concat org-directory s))
-                                '("inbox.org" "orgzly-inbox.org" "todo.org" "tickler.org" "reviews.org" "caverion.org" "houston.org"))
+                                '("inbox.org"
+                                  "orgzly-inbox.org"
+                                  "todo.org"
+                                  "tickler.org"
+                                  "reviews.org"
+                                  "caverion.org"
+                                  "houston.org"
+                                  "workflow.org"))
         ;; org-agenda-window-setup 'reorganize-frame
         ;; org-agenda-files '("~/org/inbox.org"
+        ;;                    "~/org/orgzly-inbox.org"
         ;;                    "~/org/todo.org"
-        ;;                    "~/org/tickler.org")
+        ;;                    "~/org/tickler.org"
+        ;;                    "~/org/reviews.org"
+        ;;                    "~/org/caverion.org"
+        ;;                    "~/org/houston.org"
+        ;;                    "~/org/gcal/gmail.org"
+        ;;                    "~/org/gcal/houston.org")
         org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm
-        org-refile-targets '((nil :maxlevel . 3) (org-agenda-files :maxlevel . 3))
+        org-refile-targets '((nil :maxlevel . 2) (org-agenda-files :maxlevel . 2))
         ;; org-refile-targets '(("~/org/todo.org" :maxlevel . 3)
         ;;                      ("~/org/someday.org" :level . 1)
         ;;                      ("~/org/tickler.org" :maxlevel . 2)
@@ -133,15 +143,19 @@
         ;;                      ("~/org/workflow.org" :maxlevel . 2))
         ;; org-archive-location (concat (ts/org-file-path "archive.org") "::* From %s")
         org-archive-location "~/org/archive.org::* From %s"
+        org-startup-folded 'content
         org-pretty-entities t
         org-use-fast-todo-selection t
         ;; org-treat-S-cursor-todo-selection-as-state-change t
-        org-treat-S-cursor-todo-selection-as-state-change nil
+        ;; org-treat-S-cursor-todo-selection-as-state-change nil
         org-goto-interface 'outline-path-completion
         org-outline-path-complete-in-steps nil
         ;; org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
-        org-tags-column -80
+        org-tags-column -100
+        org-agenda-tags-column -100
+        org-agenda-dim-blocked-tasks t
         org-log-done 'time
+        org-log-reschedule 'note
         org-log-into-drawer t
         org-log-state-notes-insert-after-drawers nil
         org-bullets-bullet-list '("⚙" "✿" "◉" "○" "✸")
@@ -149,40 +163,42 @@
         ;; org-bullets-bullet-list '("☰" "◉" "○" "✿" "✸")
         org-ellipsis " "
         org-tag-alist '(;; Context
+                        ("COMPUTER" . ?c)
+                        ("PHONE"    . ?p)
+                        ("EMACS"    . ?e)
+                        ("WORKFLOW" . ?f)
+                        ("WORK"     . ?w)
                         (:startgroup)
-                        ("home" . ?h)
-                        ("work" . ?w)
-                        (:endgroup)
-                        (:startgroup)
-                        ("@home" . ?e)
-                        ("@work" . ?k)
-                        ("@houston" . ?n)
-                        ("@client" . ?c)
-                        ("@online" . ?o)
-                        ("@phone" . ?p)
-                        (:endgroup)
-                        )
+                        ("@HOME"     . ?h)
+                        ("@SHOPPING" . ?s)
+                        ("@HOUSTON"  . ?o)
+                        ("@CLIENT"   . ?l)
+                        ("@CAVERION" . ?a)
+                        (:endgroup))
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                             (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))
         ;; DRAFT is for blog posts, used in blog org files
-        org-todo-keyword-faces '(("TODO" . (:foreground "#cc6666" :underline t))
-                                 ("NEXT" . (:foreground "#8abeb7" :underline t))
-                                 ("WAITING" . (:foreground "#fabd2f" :underline t))
-                                 ("HOLD" . (:foreground "#de935f" :underline t))
-                                 ("DONE" . (:foreground "#b5bd68" :underline t))
-                                 ("CANCELLED" . (:foreground "#717171" :underline t))
+        org-todo-keyword-faces '(("TODO" . (:foreground "#61afef" :underline t))
+                                 ("NEXT" . (:foreground "#fabd2f" :underline t))
+                                 ("WAITING" . (:foreground "#de935f" :underline t))
+                                 ("HOLD" . (:foreground "#cc6666" :underline t))
+                                 ("DONE" . (:foreground "#b5bd68" :underline nil))
+                                 ("CANCELLED" . (:foreground "#717171" :underline nil))
                                  ("DRAFT" . (:foreground "#fabd2f" :underline t)))
         org-priority-faces '((65 :foreground "#e06c75")
                              (66 :foreground "#61afef")
                              (67 :foreground "#b5bd68"))
-        org-capture-templates '(("t" "Todo" entry
+        org-capture-templates '(("t" "TODO" entry
                                  (file+headline +org-capture-todo-file "Tasks")
-                                 "* TODO %?\n%a" :prepend t :kill-buffer t)
+                                 "* TODO %?\n:LOGBOOK:\n- Added: %U\n:END:" :prepend t :kill-buffer t)
+                                ("l" "TODO with link" entry
+                                 (file+headline +org-capture-todo-file "Tasks")
+                                 "* TODO %?\n%a\n:LOGBOOK:\n- Added: %U\n:END:" :prepend t :kill-buffer t)
                                 ("T" "Tickler" entry
-                                 (file+headline "~/org/tickler.org" "Tickler")
-                                 "* %i%? \n %U")
+                                 (file+headline "~/org/tickler.org" "Tasks")
+                                 "* %i%?\n:LOGBOOK:\n- Added: %U\n:END:")
                                 ("n" "Note" entry
-                                 (file +org-capture-notes-file)
+                                 (file+headline +org-capture-notes-file "Notes")
                                  "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
                                 ("b" "Blog post" entry
                                  (file+olp "~/projects/personal/tiniblog/content-org/posts.org" "Posts")
@@ -206,25 +222,26 @@
                                  (file +org-capture-project-notes-file)
                                  "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
 
-                                ("p" "Templates for reviews")
-                                ("rd" "Review: Daily Review" entry
-                                 (file+olp+datetree "/tmp/reviews.org")
-                                 (file "templates/dailyreview.org"))
-                                ("rw" "Review: Weekly Review" entry
-                                 (file+olp+datetree "/tmp/reviews.org")
-                                 (file "templates/weeklyreview.org"))
-                                ("rm" "Review: Monthly Review" entry
-                                 (file+olp+datetree "/tmp/reviews.org")
-                                 (file "templates/monthlyreview.org")))
+                                ;; ("p" "Templates for reviews")
+                                ;; ("rd" "Review: Daily Review" entry
+                                ;;  (file+olp+datetree "/tmp/reviews.org" "Past reviews")
+                                ;;  (file "templates/dailyreview.org"))
+                                ;; ("rw" "Review: Weekly Review" entry
+                                ;;  (file+olp+datetree "/tmp/reviews.org" "Past reviews")
+                                ;;  (file "templates/weeklyreview.org"))
+                                ;; ("rm" "Review: Monthly Review" entry
+                                ;;  (file+olp+datetree "/tmp/reviews.org" "Past reviews")
+                                ;;  (file "templates/monthlyreview.org"))
+                                )
 
         org-agenda-custom-commands '(("g" . "GTD contexts")
-                                     ("gc" "Client" tags-todo "@client")
-                                     ("gh" "Home" tags-todo "@home")
-                                     ("go" "Houston" tags-todo "@houston")
-                                     ("gw" "Work" tags-todo "@work")
+                                     ("gc" "Client" tags-todo "@CLIENT")
+                                     ("gh" "Home" tags-todo "@HOME")
+                                     ("go" "Houston" tags-todo "@HOUSTON")
+                                     ("gw" "Work" tags-todo "WORK")
                                      ("G" "GTD Block Agenda"
-                                      ((tags-todo "@houston")
-                                       (tags-todo "@home"))))
+                                      ((tags-todo "@HOUSTON")
+                                       (tags-todo "@HOME"))))
         )
   ;; org-capture-templates '(("t" "Task" entry
   ;;                         (file+headline "refile.org" "Tasks")
@@ -263,15 +280,22 @@
    :gnvime "a"       #'org-agenda
    :gnvime "c"       #'org-capture
    :gnvime "b"       #'org-switchb)
-;
-;  (:prefix "C-c r"
-;    :gnvime "d"       #'ts/new-daily-review
-;    :gnvime "w"       #'ts/new-weekly-review
-;    :gnvime "m"       #'ts/new-monthly-review)
-;
+
+ (:prefix "C-c r"
+   :gnvime "d"       #'ts/new-daily-review
+   :gnvime "w"       #'ts/new-weekly-review
+   :gnvime "m"       #'ts/new-monthly-review)
+
+ (:after org-super-agenda
+   :map org-super-agenda-header-map
+   :nvme "j" #'org-agenda-next-line
+   :nvme "k" #'org-agenda-previous-line)
+
  (:after org
    :map org-agenda-mode-map
    :nvme "F" #'org-agenda-follow-mode
+   :nvme "j" #'org-agenda-next-line
+   :nvme "k" #'org-agenda-previous-line
    :nvme "n" #'org-agenda-next-line
    :nvme "p" #'org-agenda-previous-line
    :nvme "N" #'org-agenda-next-item
@@ -301,7 +325,13 @@
    (:leader
      (:prefix ("/" . "search")
        :desc "Org sparse tree"             :n  "s" #'org-sparse-tree
-       :desc "Org tags sparse tree"        :n  "t" #'org-tags-sparse-tree))))
+       :desc "Org tags sparse tree"        :n  "t" #'org-tags-sparse-tree))
+
+   :localleader
+   "T" nil
+   (:prefix ("T" . "toggles")
+     "o" #'org-toggle-ordered-property
+     "l" #'org-toggle-link-display)))
 ;
 ;    :localleader
 ;    "s" nil

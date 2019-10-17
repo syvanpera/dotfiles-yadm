@@ -1,8 +1,8 @@
 ;;; init.el -*- lexical-binding: t; -*-
 (setq
  ;; doom-theme 'doom-dracula
- ;; doom-theme 'doom-onedark
- doom-theme 'doom-tomorrow-night
+ doom-theme 'doom-onedark
+ ;; doom-theme 'doom-tomorrow-night
  ;; doom-theme 'doom-palenight
  ;; doom-theme 'doom-one
  ;; doom-theme 'doom-gruvbox
@@ -142,7 +142,7 @@
         +protocol)       ; Support for org-protocol:// links
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
-       ;;plantuml          ; diagrams for confusing people more
+       plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
@@ -199,13 +199,36 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-builtin-face ((t (:foreground "#61afef"))))
- '(font-lock-function-name-face ((t (:foreground "#61afef"))))
- '(org-headline-done ((t (:foreground "#717171" :strike-through t))))
- '(outline-1 ((t (:foreground "#61afef" :background nil :weight bold))))
- '(outline-3 ((t (:foreground "#f0c674" :weight bold))))
- '(org-block ((t (:background "#222424"))))
+ '(outline-1 ((t (:weight bold))))
+ '(outline-2 ((t (:weight normal))))
+ '(outline-3 ((t (:weight normal))))
+ '(outline-4 ((t (:weight normal))))
  '(solaire-default-face ((t (:inherit default :background "#1e1e1e"))))
- '(solaire-hl-line-face ((t (:inherit hl-line :background "#363739"))))
+ '(hl-line ((t (:inherit hl-line :background "#3c424c"))))
  '(whitespace-tab ((t (:background "#1e1e1e" :foreground "#3f4040"))))
- '(mu4e-view-body-face ((t (:background nil)))))
+ )
+
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(font-lock-builtin-face ((t (:foreground "#61afef"))))
+;;  '(font-lock-function-name-face ((t (:foreground "#61afef"))))
+;;  '(org-todo ((t (:weight normal))))
+;;  '(org-headline-done ((t (:foreground "#717171" :strike-through t))))
+;;  '(outline-1 ((t (:foreground "#61afef" :background nil :weight bold))))
+;;  '(outline-2 ((t (:foreground "#b294bb" :background nil :weight normal))))
+;;  '(outline-3 ((t (:foreground "#8abeb7" :weight normal))))
+;;  '(outline-4 ((t (:foreground "#f0c674" :weight normal))))
+;;  '(org-block ((t (:background "#222424"))))
+;;  '(org-scheduled-today ((t (:foreground "#8abeb7"))))
+;;  '(org-scheduled-previously ((t (:foreground "#de935f"))))
+;;  '(org-agenda-date ((t (:foreground "#b294bb" :weight normal :height 1.0))))
+;;  '(org-agenda-date-today ((t (:foreground "#c678dd" :weight bold :height 1.0))))
+;;  ;; '(org-agenda-date-weekend ((t (:foreground "#b5bd68"))))
+;;  '(org-super-agenda-header ((t (:background "#363739" :overline t :weight bold))))
+;;  '(solaire-default-face ((t (:inherit default :background "#1e1e1e"))))
+;;  '(solaire-hl-line-face ((t (:inherit hl-line :background "#363739"))))
+;;  '(whitespace-tab ((t (:background "#1e1e1e" :foreground "#3f4040"))))
+;;  '(mu4e-view-body-face ((t (:background nil)))))
