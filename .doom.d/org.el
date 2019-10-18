@@ -59,17 +59,17 @@
 ;;                                :client-secret org-gtasks-client-secret))
 
 
-;; (def-package! org-gcal
-;;   :after org
-;;   :commands (org-gcal-sync
-;;              org-gcal-fetch
-;;              org-gcal-post-at-point
-;;              org-gcal-delete-at-point)
-;;   :config
-;;   (load-file "~/.emacs-secrets.el")
-;;   ;; hack to avoid the deferred.el error
-;;   (defun org-gcal--notify (title mes)
-;;     (message "org-gcal::%s - %s" title mes)))
+(def-package! org-gcal
+  :after org
+  :commands (org-gcal-sync
+             org-gcal-fetch
+             org-gcal-post-at-point
+             org-gcal-delete-at-point)
+  :config
+  (load-file "~/.emacs-secrets.el")
+  ;; hack to avoid the deferred.el error
+  (defun org-gcal--notify (title mes)
+    (message "org-gcal::%s - %s" title mes)))
 
 ; (def-package! org-gtasks
 ;   :after org
@@ -80,24 +80,24 @@
 ;                                :client-id org-gtasks-client-id
 ;                                :client-secret org-gtasks-client-secret))
 
-;; (def-package! org-super-agenda
-;;   :after org-agenda
-;;   :init
-;;   (setq org-super-agenda-groups '((:name "Today"
-;;                                          :time-grid t
-;;                                          :scheduled today)
-;;                                   (:name "Due today"
-;;                                          :deadline today)
-;;                                   (:name "Important"
-;;                                          :priority "A")
-;;                                   (:name "Overdue"
-;;                                          :deadline past)
-;;                                   (:name "Due soon"
-;;                                          :deadline future)
-;;                                   (:name "Work"
-;;                                          :tag "WORK")))
-;;   :config
-;;   (org-super-agenda-mode))
+(def-package! org-super-agenda
+  :after org-agenda
+  :init
+  (setq org-super-agenda-groups '((:name "Today"
+                                         :time-grid t
+                                         :scheduled today)
+                                  (:name "Due today"
+                                         :deadline today)
+                                  (:name "Important"
+                                         :priority "A")
+                                  (:name "Overdue"
+                                         :deadline past)
+                                  (:name "Due soon"
+                                         :deadline future)
+                                  (:name "Work"
+                                         :tag "WORK")))
+  :config
+  (org-super-agenda-mode))
 
 (def-package! org-fancy-priorities
   :hook (org-mode . org-fancy-priorities-mode)
@@ -179,15 +179,15 @@
                             (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))
         ;; DRAFT is for blog posts, used in blog org files
         org-todo-keyword-faces '(("TODO" . (:foreground "#61afef" :underline t))
-                                 ("NEXT" . (:foreground "#fabd2f" :underline t))
+                                 ("NEXT" . (:foreground "#e5c07b" :underline t))
                                  ("WAITING" . (:foreground "#de935f" :underline t))
-                                 ("HOLD" . (:foreground "#cc6666" :underline t))
-                                 ("DONE" . (:foreground "#b5bd68" :underline nil))
+                                 ("HOLD" . (:foreground "#e06c75" :underline t))
+                                 ("DONE" . (:foreground "#98c379" :underline nil))
                                  ("CANCELLED" . (:foreground "#717171" :underline nil))
                                  ("DRAFT" . (:foreground "#fabd2f" :underline t)))
         org-priority-faces '((65 :foreground "#e06c75")
                              (66 :foreground "#61afef")
-                             (67 :foreground "#b5bd68"))
+                             (67 :foreground "#98c379"))
         org-capture-templates '(("t" "TODO" entry
                                  (file+headline +org-capture-todo-file "Tasks")
                                  "* TODO %?\n:LOGBOOK:\n- Added: %U\n:END:" :prepend t :kill-buffer t)

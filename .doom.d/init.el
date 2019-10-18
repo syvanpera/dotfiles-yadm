@@ -199,10 +199,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(outline-1 ((t (:weight bold))))
- '(outline-2 ((t (:weight normal))))
- '(outline-3 ((t (:weight normal))))
- '(outline-4 ((t (:weight normal))))
+ '(outline-1 ((t (:background nil :weight bold))))
+ '(outline-2 ((t (:foreground "#c678dd" :weight normal))))
+ '(outline-3 ((t (:foreground "#b48ead" :weight normal))))
+ '(outline-4 ((t (:foreground "#88c3f3" :weight normal))))
+ '(org-agenda-date-today ((t (:background "#3c424c" :overline t :underline t))))
  '(solaire-default-face ((t (:inherit default :background "#1e1e1e"))))
  '(hl-line ((t (:inherit hl-line :background "#3c424c"))))
  '(whitespace-tab ((t (:background "#1e1e1e" :foreground "#3f4040"))))

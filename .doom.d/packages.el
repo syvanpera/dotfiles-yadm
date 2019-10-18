@@ -4,7 +4,7 @@
 (package! godoctor)
 (package! yasnippet-snippets)
 (package! ascii-art-to-unicode)
-;; (package! org-gcal)
+(package! org-gcal)
 ;; (package! org-gtasks :recipe (:host github :repo "syvanpera/org-gtasks"))
 (package! org-super-agenda)
 (package! ox-hugo)
