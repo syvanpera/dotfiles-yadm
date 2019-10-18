@@ -1,10 +1,10 @@
 ;;; init.el -*- lexical-binding: t; -*-
 (setq
  ;; doom-theme 'doom-dracula
- doom-theme 'doom-onedark
+ ;; doom-theme 'doom-onedark
  ;; doom-theme 'doom-tomorrow-night
  ;; doom-theme 'doom-palenight
- ;; doom-theme 'doom-one
+ doom-theme 'doom-one
  ;; doom-theme 'doom-gruvbox
  doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
  ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
@@ -199,15 +199,31 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(outline-1 ((t (:background nil :weight bold))))
- '(outline-2 ((t (:foreground "#c678dd" :weight normal))))
- '(outline-3 ((t (:foreground "#b48ead" :weight normal))))
- '(outline-4 ((t (:foreground "#88c3f3" :weight normal))))
- '(org-agenda-date-today ((t (:background "#3c424c" :overline t :underline t))))
- '(solaire-default-face ((t (:inherit default :background "#1e1e1e"))))
- '(hl-line ((t (:inherit hl-line :background "#3c424c"))))
- '(whitespace-tab ((t (:background "#1e1e1e" :foreground "#3f4040"))))
+ '(outline-1 ((t (:background nil))))
+ '(outline-2 ((t (:background nil))))
+ '(outline-3 ((t (:background nil))))
+ '(outline-4 ((t (:background nil))))
+ '(default ((t (:background "#1e1e1e"))))
+ ;; '(solaire-default-face ((t (:inherit default :background "#1e1e1e"))))
+ '(hl-line ((t (:inherit hl-line :background "#343840"))))
+ ;; '(solaire-hl-line-face ((t (:inherit hl-line :background "#31343b"))))
+ '(whitespace-tab ((t (:background "#1e1e1e"))))
  )
+
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(outline-1 ((t (:background nil :weight bold))))
+;;  '(outline-2 ((t (:foreground "#c678dd" :weight normal))))
+;;  '(outline-3 ((t (:foreground "#b48ead" :weight normal))))
+;;  '(outline-4 ((t (:foreground "#88c3f3" :weight normal))))
+;;  '(org-agenda-date-today ((t (:background "#3c424c" :overline t :underline t))))
+;;  '(solaire-default-face ((t (:inherit default :background "#1e1e1e"))))
+;;  '(hl-line ((t (:inherit hl-line :background "#3c424c"))))
+;;  '(whitespace-tab ((t (:background "#1e1e1e" :foreground "#3f4040"))))
+;;  )
 
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.

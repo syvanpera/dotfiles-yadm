@@ -10,9 +10,6 @@
 (add-to-list 'load-path (expand-file-name "elisp" doom-private-dir))
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
-(require 'simpleclip)
-(simpleclip-mode 1)
-
 (with-current-buffer "*scratch*"  (emacs-lock-mode 'kill))
 (with-current-buffer "*Messages*" (emacs-lock-mode 'kill))
 
@@ -24,6 +21,12 @@
 
 (setq dired-listing-switches (concat dired-listing-switches "Gg")
       dired-dwim-target t)
+
+(require 'simpleclip)
+(simpleclip-mode 1)
+
+(after! solaire-mode
+  (solaire-global-mode -1))
 
 (after! evil
   (setq evil-vsplit-window-right t)
