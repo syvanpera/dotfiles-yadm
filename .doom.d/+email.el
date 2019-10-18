@@ -1,4 +1,4 @@
-;;; ~/dotfiles/emacs/doom.d/email.el -*- lexical-binding: t; -*-
+;;; ~/dotfiles/emacs/doom.d/+email.el -*- lexical-binding: t; -*-
 
 ;; ;; use org structures and tables in message mode
 ;; (add-hook 'message-mode-hook 'turn-on-orgtbl)
@@ -94,4 +94,4 @@
                     (mu4e-refile-folder . "/houston/[Gmail].All Mail"))))))
   ;; (add-hook 'message-send-mail-hook 'choose-msmtp-account))
 
-;;; email.el ends here
+;;; +email.el ends here

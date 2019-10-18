@@ -1,4 +1,4 @@
-;;; ~/dotfiles/emacs/doom.d/languages.el -*- lexical-binding: t; -*-
+;;; ~/dotfiles/emacs/doom.d/+languages.el -*- lexical-binding: t; -*-
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook 'goto-address-mode)
@@ -7,10 +7,10 @@
 (after! haskell-mode
   (add-hook! 'haskell-mode-hook 'haskell-indent-mode))
 
-(after! web-beautify
-  :init
-  (map! (:map* (json-mode-map)
-               :n "gQ" #'web-beautify-js)))
+; (after! web-beautify
+;   :init
+;   (map! (:map* (json-mode-map)
+;                :n "gQ" #'web-beautify-js)))
 
 (after! elm
   (setq elm-tags-on-save t
@@ -70,4 +70,4 @@
 (def-package! godoctor
   :after go-mode)
 
-;;; languages.el ends here
+;;; +languages.el ends here

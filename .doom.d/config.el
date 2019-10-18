@@ -13,8 +13,8 @@
 (with-current-buffer "*scratch*"  (emacs-lock-mode 'kill))
 (with-current-buffer "*Messages*" (emacs-lock-mode 'kill))
 
-(load! "funcs")
-(load! "bindings")
+(load! "+funcs")
+(load! "+bindings")
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
 ;; (add-hook 'dired-mode-hook (lambda () (require 'dired-sort)))
@@ -101,10 +101,10 @@
 (def-package! evil-iedit-state
   :after evil)
 
-(load! "email")     ;; Yes, I read my email with emacs too
-(load! "languages") ;; Programming stuff
-(load! "ui")        ;; UI modifications
-(load! "org")       ;; Org mode stuff
+(load! "+email")     ;; Yes, I read my email with emacs too
+(load! "+languages") ;; Programming stuff
+(load! "+ui")        ;; UI modifications
+(load! "+org")    ;; Org mode stuff
 
 (provide 'config)
 

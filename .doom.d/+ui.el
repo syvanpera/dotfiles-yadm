@@ -1,4 +1,4 @@
-;;; ~/dotfiles/emacs/doom.d/ui.el -*- lexical-binding: t; -*-
+;;; ~/dotfiles/emacs/doom.d/+ui.el -*- lexical-binding: t; -*-
 
 (fringe-mode '(8 . 8))
 
@@ -42,4 +42,4 @@
 ;; (after! doom-themes
 ;;   (remove-hook 'doom-load-theme-hook #'doom-themes-treemacs-config))
 
-;;; ui.el ends here
+;;; +ui.el ends here

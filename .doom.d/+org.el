@@ -1,4 +1,4 @@
-;;; ~/dotfiles/emacs/doom.d/org.el -*- lexical-binding: t; -*-
+;;; ~/dotfiles/emacs/doom.d/+org.el -*- lexical-binding: t; -*-
 
 (defun ts/org-file-path (filename)
   "Return the absolute address of an org file, given its relative name."
@@ -50,15 +50,6 @@
       (org-narrow-to-subtree)
       (org-clock-in))))
 
-;; (after! org
-;;   (require 'org-gtasks)
-;;   (load-file "~/.emacs-secrets.el")
-;;   (org-gtasks-register-account :name "Gmail"
-;;                                :directory "~/org/gtasks/"
-;;                                :client-id org-gtasks-client-id
-;;                                :client-secret org-gtasks-client-secret))
-
-
 (def-package! org-gcal
   :after org
   :commands (org-gcal-sync
@@ -70,15 +61,6 @@
   ;; hack to avoid the deferred.el error
   (defun org-gcal--notify (title mes)
     (message "org-gcal::%s - %s" title mes)))
-
-; (def-package! org-gtasks
-;   :after org
-;   :config
-;   (load-file "~/.emacs-secrets.el")
-;   (org-gtasks-register-account :name "Gmail"
-;                                :directory "~/org/gtasks/"
-;                                :client-id org-gtasks-client-id
-;                                :client-secret org-gtasks-client-secret))
 
 (def-package! org-super-agenda
   :after org-agenda
@@ -107,8 +89,6 @@
 (after! org
   (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  ;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-  ;; (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
   (setq +org-dir (expand-file-name "~/org/")
         org-directory (expand-file-name "~/org/")
         +org-capture-todo-file "inbox.org"
@@ -122,32 +102,14 @@
                                   "caverion.org"
                                   "houston.org"
                                   "workflow.org"))
-        ;; org-agenda-window-setup 'reorganize-frame
-        ;; org-agenda-files '("~/org/inbox.org"
-        ;;                    "~/org/orgzly-inbox.org"
-        ;;                    "~/org/todo.org"
-        ;;                    "~/org/tickler.org"
-        ;;                    "~/org/reviews.org"
-        ;;                    "~/org/caverion.org"
-        ;;                    "~/org/houston.org"
-        ;;                    "~/org/gcal/gmail.org"
-        ;;                    "~/org/gcal/houston.org")
         org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm
         org-refile-targets '((nil :maxlevel . 2) (org-agenda-files :maxlevel . 2))
-        ;; org-refile-targets '(("~/org/todo.org" :maxlevel . 3)
-        ;;                      ("~/org/someday.org" :level . 1)
-        ;;                      ("~/org/tickler.org" :maxlevel . 2)
-        ;;                      ("~/org/projects.org" :maxlevel . 2)
-        ;;                      ("~/org/workflow.org" :maxlevel . 2))
-        ;; org-archive-location (concat (ts/org-file-path "archive.org") "::* From %s")
         org-archive-location "~/org/archive.org::* From %s"
         org-startup-folded 'content
         org-pretty-entities t
         org-use-fast-todo-selection t
-        ;; org-treat-S-cursor-todo-selection-as-state-change t
-        ;; org-treat-S-cursor-todo-selection-as-state-change nil
         org-goto-interface 'outline-path-completion
         org-outline-path-complete-in-steps nil
         ;; org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
@@ -159,8 +121,6 @@
         org-log-into-drawer t
         org-log-state-notes-insert-after-drawers nil
         org-bullets-bullet-list '("⚙" "✿" "◉" "○" "✸")
-        ;; org-bullets-bullet-list '("●" "◉" "○" "✿" "✸")
-        ;; org-bullets-bullet-list '("☰" "◉" "○" "✿" "✸")
         org-ellipsis " "
         org-tag-alist '(;; Context
                         ("COMPUTER" . ?c)
@@ -178,13 +138,13 @@
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                             (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))
         ;; DRAFT is for blog posts, used in blog org files
-        org-todo-keyword-faces '(("TODO" . (:foreground "#61afef" :underline t))
-                                 ("NEXT" . (:foreground "#e5c07b" :underline t))
-                                 ("WAITING" . (:foreground "#de935f" :underline t))
-                                 ("HOLD" . (:foreground "#e06c75" :underline t))
-                                 ("DONE" . (:foreground "#98c379" :underline nil))
-                                 ("CANCELLED" . (:foreground "#717171" :underline nil))
-                                 ("DRAFT" . (:foreground "#fabd2f" :underline t)))
+        ;; org-todo-keyword-faces '(("TODO" . (:foreground "#61afef" :underline t))
+        ;;                          ("NEXT" . (:foreground "#e5c07b" :underline t))
+        ;;                          ("WAITING" . (:foreground "#de935f" :underline t))
+        ;;                          ("HOLD" . (:foreground "#e06c75" :underline t))
+        ;;                          ("DONE" . (:foreground "#98c379" :underline nil))
+        ;;                          ("CANCELLED" . (:foreground "#717171" :underline nil))
+        ;;                          ("DRAFT" . (:foreground "#fabd2f" :underline t)))
         org-priority-faces '((65 :foreground "#e06c75")
                              (66 :foreground "#61afef")
                              (67 :foreground "#98c379"))
@@ -243,35 +203,7 @@
                                       ((tags-todo "@HOUSTON")
                                        (tags-todo "@HOME"))))
         )
-  ;; org-capture-templates '(("t" "Task" entry
-  ;;                         (file+headline "refile.org" "Tasks")
-  ;;                         "* ☛ TODO %^{Task}\n"
-  ;;                         :immediate-finish t :kill-buffer t)
-  ;;                         ("n" "Note" entry
-  ;;                         (file+headline +org-default-notes-file "Notes")
-  ;;                         "* %?\n"
-  ;;                         :immediate-finish t :kill-buffer t)
-  ;;                         ("s" "Snippet" entry
-  ;;                         (file+headline org-snippets-file "Snippets")
-  ;;                         "* %^{Title}\t%^g\n#+BEGIN_SRC %^{Language|typescript|javascript|emacs-lisp}\n%i%?\n#+END_SRC\n")
-  ;;                         ("e" "Emacs task" entry
-  ;;                         (file+headline "emacs.org" "Tasks")
-  ;;                         "* ☛ TODO %^{Task}\n\n"
-  ;;                         :immediate-finish t :kill-buffer t))
   )
-
-;; (after! org-capture
-;;   (defvar ts/org-contacts-template "* %(org-contacts-template-name)
-;;  :PROPERTIES:
-;; :ADDRESS: %^{289 Cleveland St. Brooklyn, 11206 NY, USA}
-;; :BIRTHDAY: %^{yyyy-mm-dd}
-;; :EMAIL: %(org-contacts-template-email)
-;; :NOTE: %^{NOTE}
-;; :END:" "Template for org-contacts.")
-;;   (org-capture-templates
-;;    `(("c" "Contact" entry (file+headline "~/org/contacts.org" "Friends"),
-;;       ts/org-contacts-template
-;;       :empty-lines 1))))
 
 (map!
  (:prefix "C-c"
@@ -305,14 +237,6 @@
    :nvme "M-s" #'org-save-all-org-buffers
 
    :map org-mode-map
-   ;; :nvime "s-h" #'org-metaleft
-   ;; :nvime "s-l" #'org-metaright
-   ;; :nvime "s-k" #'org-metaup
-   ;; :nvime "s-j" #'org-metadown
-   ;; :nvime "s-J" #'org-shiftmetadown
-   ;; :nvime "s-K" #'org-shiftmetaup
-   ;; :nvime "s-H" #'org-shiftmetaleft
-   ;; :nvime "s-L" #'org-shiftmetaright
    :nvme "L" #'org-shiftright
    :nvme "H" #'org-shiftleft
    :nvme "K" #'org-shiftup
@@ -332,86 +256,5 @@
    (:prefix ("T" . "toggles")
      "o" #'org-toggle-ordered-property
      "l" #'org-toggle-link-display)))
-;
-;    :localleader
-;    "s" nil
-;    "t" nil
-;    "T" nil
-;    "d" nil
-;    "i" nil
-;    (:prefix ("s" . "subtrees")
-;      "a" #'org-toggle-archive-tag
-;      "A" #'org-archive-subtree
-;      "b" #'org-tree-to-indirect-buffer
-;      "h" #'org-promote-subtree
-;      "j" #'org-move-subtree-down
-;      "k" #'org-move-subtree-up
-;      "l" #'org-demote-subtree
-;      "n" #'org-narrow-to-subtree
-;      "N" #'widen
-;      "r" #'org-refile
-;      "s" #'org-sparse-tree
-;      "S" #'org-sort
-;      )
-;    (:prefix ("T" . "toggles")
-;      "c" #'org-toggle-checkbox
-;      "e" #'org-toggle-pretty-entities
-;      "i" #'org-toggle-inline-images
-;      "l" #'org-toggle-link-display
-;      "t" #'org-show-todo-tree
-;      "T" #'org-todo
-;      "h" #'org-toggle-heading
-;      )
-;    (:prefix ("d" . "time")
-;      "d" #'org-deadline
-;      "s" #'org-schedule
-;      "t" #'org-time-stamp
-;      "T" #'org-time-stamp-inactive
-;      )
-;    (:prefix ("t" . "tables")
-;      "a" #'org-table-align
-;      "b" #'org-table-blank-field
-;      "c" #'org-table-convert
-;      "dc" #'org-table-delete-column
-;      "dr" #'org-table-kill-row
-;      "e" #'org-table-eval-formula
-;      "E" #'org-table-export
-;      "h" #'org-table-previous-field
-;      "H" #'org-table-move-column-left
-;      "ic" #'org-table-insert-column
-;      "ih" #'org-table-insert-hline
-;      "iH" #'org-table-hline-and-move
-;      "ir" #'org-table-insert-row
-;      "I" #'org-table-import
-;      "j" #'org-table-next-row
-;      "J" #'org-table-move-row-down
-;      "K" #'org-table-move-row-up
-;      "l" #'org-table-next-field
-;      "L" #'org-table-move-column-right
-;      "n" #'org-table-create
-;      "N" #'org-table-create-with-table.el
-;      "r" #'org-table-recalculate
-;      "s" #'org-table-sort-lines
-;      "tf" #'org-table-toggle-formula-debugger
-;      "to" #'org-table-toggle-coordinate-overlays
-;      "w" #'org-table-wrap-region
-;      )
-;    (:prefix ("i" . "insertion")
-;      "b" #'org-insert-structure-template
-;      "d" #'org-insert-drawer
-;      "e" #'org-set-effort
-;      "f" #'org-footnote-new
-;      "h" #'org-insert-heading
-;      "H" #'org-insert-heading-after-current
-;      "i" #'org-insert-item
-;      "K" #'spacemacs/insert-keybinding-org
-;      "l" #'org-insert-link
-;      "n" #'org-add-note
-;      "p" #'org-set-property
-;      "s" #'org-insert-subheading
-;      "t" #'org-set-tags-command
-;      )
-;    )
-;  )
 
-;;; org.el ends here
+;;; +org.el ends here

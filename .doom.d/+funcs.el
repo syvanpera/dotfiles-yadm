@@ -165,3 +165,5 @@ preform search from current directory."
         (lang (read-string "Language: "))
         (tags (read-string "Tags: ")))
   (shell-command-on-region (region-beginning) (region-end) (concat "gossip add code \"" desc "\" -l " lang " -t " tags " -q"))))
+
+;;; +funcs.el ends here
