@@ -190,13 +190,13 @@
                              (67 :foreground "#98c379"))
         org-capture-templates '(("t" "TODO" entry
                                  (file+headline +org-capture-todo-file "Tasks")
-                                 "* TODO %?\n:LOGBOOK:\n- Added: %U\n:END:" :prepend t :kill-buffer t)
+                                 "* TODO %?" :prepend t :kill-buffer t)
                                 ("l" "TODO with link" entry
                                  (file+headline +org-capture-todo-file "Tasks")
-                                 "* TODO %?\n%a\n:LOGBOOK:\n- Added: %U\n:END:" :prepend t :kill-buffer t)
+                                 "* TODO %?\n%a" :prepend t :kill-buffer t)
                                 ("T" "Tickler" entry
                                  (file+headline "~/org/tickler.org" "Tasks")
-                                 "* %i%?\n:LOGBOOK:\n- Added: %U\n:END:")
+                                 "* %i%?")
                                 ("n" "Note" entry
                                  (file+headline +org-capture-notes-file "Notes")
                                  "* %u %?\n%i\n%a" :prepend t :kill-buffer t)

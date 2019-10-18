@@ -42,5 +42,5 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_user_paths:/home/tuomo/scripts\x1e/home/tuomo/go/bin\x1e/home/tuomo/bin\x1e/home/tuomo/\x2ecargo/bin\x1e/home/tuomo/\x2eplatformio/penv/bin
+SETUVAR fish_user_paths:/home/tuomo/\x2econfig/nvm/8\x2e15\x2e1/bin\x1e/home/tuomo/scripts\x1e/home/tuomo/go/bin\x1e/home/tuomo/bin\x1e/home/tuomo/\x2ecargo/bin\x1e/home/tuomo/\x2eplatformio/penv/bin\x1e/home/tuomo/\x2elocal/bin
 SETUVAR pure_version:2\x2e1\x2e8
