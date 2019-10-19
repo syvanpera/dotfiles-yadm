@@ -32,6 +32,9 @@
   (setq evil-vsplit-window-right t)
   (evil-put-command-property 'evil-yank-line :motion 'evil-line))
 
+(after! evil-snipe
+  (setq evil-snipe-scope 'buffer))
+
 (after! ivy
   (setq +ivy-buffer-icons t))
 

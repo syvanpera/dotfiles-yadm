@@ -51,6 +51,11 @@ if prefix argument ARG is given, switch to it in an other, possibly new window."
   (interactive)
   (find-file (concat org-directory +org-capture-todo-file)))
 
+(defun ts/open-org-archive ()
+  "Open org archive file."
+  (interactive)
+  (find-file (concat org-directory "archive.org")))
+
 (defun ts/open-org-notes ()
   "Open org notes file."
   (interactive)

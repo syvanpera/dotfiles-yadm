@@ -31,7 +31,7 @@ alt + shift + w
 alt + shift + p
 	rofi-pass
 
-alt + shift + s
+super + shift + s
 	flameshot gui -p ~/Pictures/Screenshots
 
 # alt + shift + s

@@ -217,6 +217,12 @@
  '(outline-2 ((t (:background nil))))
  '(outline-3 ((t (:background nil))))
  '(outline-4 ((t (:background nil))))
+ ;; '(org-scheduled ((t (:foreground "#44b9b1"))))
+ ;; '(org-scheduled-today ((t (:inherit org-scheduled))))
+ ;; '(org-agenda-date ((t (:height 1.1))))
+ ;; '(org-agenda-date-weekend ((t (:inherit org-agenda-date))))
+ '(org-agenda-date-today ((t (:inherit org-agenda-date :overline t :underline t))))
+ '(org-super-agenda-header ((t (:background "#363739" :overline t :weight bold))))
  '(whitespace-tab ((t (:background "#1e1e1e")))))
 
 ;; (custom-set-faces

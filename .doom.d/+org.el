@@ -62,24 +62,24 @@
   (defun org-gcal--notify (title mes)
     (message "org-gcal::%s - %s" title mes)))
 
-(def-package! org-super-agenda
-  :after org-agenda
-  :init
-  (setq org-super-agenda-groups '((:name "Today"
-                                         :time-grid t
-                                         :scheduled today)
-                                  (:name "Due today"
-                                         :deadline today)
-                                  (:name "Important"
-                                         :priority "A")
-                                  (:name "Overdue"
-                                         :deadline past)
-                                  (:name "Due soon"
-                                         :deadline future)
-                                  (:name "Work"
-                                         :tag "WORK")))
-  :config
-  (org-super-agenda-mode))
+;; (def-package! org-super-agenda
+;;   :after org-agenda
+;;   :init
+;;   (setq org-super-agenda-groups '((:name "Today"
+;;                                          :time-grid t
+;;                                          :scheduled today)
+;;                                   (:name "Due today"
+;;                                          :deadline today)
+;;                                   (:name "Important"
+;;                                          :priority "A")
+;;                                   (:name "Overdue"
+;;                                          :deadline past)
+;;                                   (:name "Due soon"
+;;                                          :deadline future)
+;;                                   (:name "Work"
+;;                                          :tag "WORK")))
+;;   :config
+;;   (org-super-agenda-mode))
 
 (def-package! org-fancy-priorities
   :hook (org-mode . org-fancy-priorities-mode)
@@ -135,8 +135,8 @@
                         ("@CLIENT"   . ?l)
                         ("@CAVERION" . ?a)
                         (:endgroup))
-        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-                            (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))
+        ;; org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        ;;                     (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))
         ;; DRAFT is for blog posts, used in blog org files
         ;; org-todo-keyword-faces '(("TODO" . (:foreground "#61afef" :underline t))
         ;;                          ("NEXT" . (:foreground "#e5c07b" :underline t))
@@ -145,6 +145,13 @@
         ;;                          ("DONE" . (:foreground "#98c379" :underline nil))
         ;;                          ("CANCELLED" . (:foreground "#717171" :underline nil))
         ;;                          ("DRAFT" . (:foreground "#fabd2f" :underline t)))
+        org-todo-keywords '((sequence "TODO(t)" "PROJ(p)" "|" "DONE(d)")
+                            ;; (sequence "[ ](T)" "[-](P)" "[?](M)" "|" "[X](D)")
+                            (sequence "NEXT(n)" "WAIT(w@/!)" "HOLD(h@/!)" "|" "ABRT(c@/!)"))
+        org-todo-keyword-faces '(("PROJ" :inherit (bold default))
+                                 ("HOLD" :inherit (warning bold))
+                                 ("WAIT" :inherit (bold) :foreground "#da8548")
+                                 ("ABRT" :inherit (error bold)))
         org-priority-faces '((65 :foreground "#e06c75")
                              (66 :foreground "#61afef")
                              (67 :foreground "#98c379"))
@@ -245,6 +252,7 @@
    :nvime "C-k" #'evil-window-up
    :nvime "C-c t l" #'org-toggle-link-display
    :nvime "s-<return>" #'org-meta-return
+   :nvime "M-S" #'org-save-all-org-buffers
 
    (:leader
      (:prefix ("/" . "search")
