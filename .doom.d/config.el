@@ -74,7 +74,7 @@
     (escape insert)))
 
 (after! deft
-  (setq deft-directory "~/org/notes"
+  (setq deft-directory "~/Sync/org/notes"
         deft-use-filename-as-title t)
   (add-hook! 'deft-mode-hook #'hl-line-mode))
 

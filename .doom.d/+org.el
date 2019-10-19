@@ -20,7 +20,7 @@
 (defun ts/new-daily-review ()
   (interactive)
   (let ((org-capture-templates '(("d" "Review: Daily Review" entry (file+olp+datetree "/tmp/reviews.org")
-                                  (file "~/org/templates/dailyreview.org")))))
+                                  (file "~/Sync/org/templates/dailyreview.org")))))
     (progn
       (org-capture nil "d")
       (org-capture-finalize t)
@@ -31,7 +31,7 @@
 (defun ts/new-weekly-review ()
   (interactive)
   (let ((org-capture-templates '(("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
-                                  (file "~/org/templates/weeklyreview.org")))))
+                                  (file "~/Sync/org/templates/weeklyreview.org")))))
     (progn
       (org-capture nil "w")
       (org-capture-finalize t)
@@ -42,7 +42,7 @@
 (defun ts/new-monthly-review ()
   (interactive)
   (let ((org-capture-templates '(("m" "Review: Monthly Review" entry (file+olp+datetree "/tmp/reviews.org")
-                                  (file "~/org/templates/monthlyreview.org")))))
+                                  (file "~/Sync/org/templates/monthlyreview.org")))))
     (progn
       (org-capture nil "m")
       (org-capture-finalize t)
@@ -89,8 +89,8 @@
 (after! org
   (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  (setq +org-dir (expand-file-name "~/org/")
-        org-directory (expand-file-name "~/org/")
+  (setq +org-dir (expand-file-name "~/Sync/org/")
+        org-directory (expand-file-name "~/Sync/org/")
         +org-capture-todo-file "inbox.org"
         +org-capture-notes-file "notes.org"
         org-agenda-files (mapcar(lambda (s) (concat org-directory s))
@@ -106,7 +106,7 @@
         org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm
         org-refile-targets '((nil :maxlevel . 2) (org-agenda-files :maxlevel . 2))
-        org-archive-location "~/org/archive.org::* From %s"
+        org-archive-location "~/Sync/org/archive.org::* From %s"
         org-startup-folded 'content
         org-pretty-entities t
         org-use-fast-todo-selection t
@@ -162,7 +162,7 @@
                                  (file+headline +org-capture-todo-file "Tasks")
                                  "* TODO %?\n%a" :prepend t :kill-buffer t)
                                 ("T" "Tickler" entry
-                                 (file+headline "~/org/tickler.org" "Tasks")
+                                 (file+headline "~/Sync/org/tickler.org" "Tasks")
                                  "* %i%?")
                                 ("n" "Note" entry
                                  (file+headline +org-capture-notes-file "Notes")
