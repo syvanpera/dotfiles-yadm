@@ -6,7 +6,7 @@
  ;; doom-theme 'doom-palenight
  doom-theme 'doom-one
  ;; doom-theme 'doom-gruvbox
- doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
+ doom-font (font-spec :family "UbuntuMono Nerd Font" :size 28)
  ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
  ;; doom-font (font-spec :family "Iosevka Nerd Font" :size 12)
  exec-path (append exec-path '("/home/tuomo/go/bin"))
@@ -210,8 +210,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background "#1e1e1e"))))
- '(solaire-default-face ((t (:background "#1e1e1e"))))
+ '(default ((t (:background "#1d1f21"))))
+ '(solaire-default-face ((t (:background "#1d1f21"))))
  '(hl-line ((t (:inherit hl-line :background "#343840"))))
  '(outline-1 ((t (:background nil))))
  '(outline-2 ((t (:background nil))))
@@ -223,7 +223,7 @@
  ;; '(org-agenda-date-weekend ((t (:inherit org-agenda-date))))
  '(org-agenda-date-today ((t (:inherit org-agenda-date :overline t :underline t))))
  '(org-super-agenda-header ((t (:background "#363739" :overline t :weight bold))))
- '(whitespace-tab ((t (:background "#1e1e1e")))))
+ '(whitespace-tab ((t (:background "#1d1f21")))))
 
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
