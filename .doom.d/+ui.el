@@ -37,6 +37,13 @@
         ;; Functional
         :lambda        "λ"))
 
+(defun treemacs-mode-handler()
+  (set (make-local-variable 'face-remapping-alist)
+       '((default :background "#282828")
+         (hl-line :background "#383838"))))
+
+(add-hook 'treemacs-mode-hook 'treemacs-mode-handler)
+
 ;; (setq window-divider-default-bottom-width 0)
 
 ;; (after! doom-themes
