@@ -7,7 +7,7 @@
  doom-theme 'doom-one
  ;; doom-theme 'doom-gruvbox
  ;; doom-font (font-spec :family "UbuntuMono Nerd Font" :size 28)
- ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 24)
+ doom-font (font-spec :family "UbuntuMono Nerd Font" :size 14)
  ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
  exec-path (append exec-path '("/home/tuomo/go/bin"))
  )
@@ -219,6 +219,7 @@
  '(outline-4 ((t (:background nil))))
  ;; '(org-scheduled ((t (:foreground "#44b9b1"))))
  ;; '(org-scheduled-today ((t (:inherit org-scheduled))))
+ '(org-scheduled-previously ((t (:foreground "#cc6666"))))
  ;; '(org-agenda-date ((t (:height 1.1))))
  ;; '(org-agenda-date-weekend ((t (:inherit org-agenda-date))))
  '(org-agenda-date-today ((t (:inherit org-agenda-date :overline t :underline t))))
