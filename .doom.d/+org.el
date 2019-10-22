@@ -19,7 +19,7 @@
 
 (defun ts/new-daily-review ()
   (interactive)
-  (let ((org-capture-templates '(("d" "Review: Daily Review" entry (file+olp+datetree "/tmp/reviews.org")
+  (let ((org-capture-templates '(("d" "Review: Daily Review" entry (file+olp+datetree "~/Sync/org/reviews.org" "Daily reviews")
                                   (file "~/Sync/org/templates/dailyreview.org")))))
     (progn
       (org-capture nil "d")
@@ -30,7 +30,7 @@
 
 (defun ts/new-weekly-review ()
   (interactive)
-  (let ((org-capture-templates '(("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
+  (let ((org-capture-templates '(("w" "Review: Weekly Review" entry (file+olp+datetree "~/Sync/org/reviews.org" "Weekly reviews")
                                   (file "~/Sync/org/templates/weeklyreview.org")))))
     (progn
       (org-capture nil "w")
@@ -41,7 +41,7 @@
 
 (defun ts/new-monthly-review ()
   (interactive)
-  (let ((org-capture-templates '(("m" "Review: Monthly Review" entry (file+olp+datetree "/tmp/reviews.org")
+  (let ((org-capture-templates '(("m" "Review: Monthly Review" entry (file+olp+datetree "~/Sync/org/reviews.org" "Monthly reviews")
                                   (file "~/Sync/org/templates/monthlyreview.org")))))
     (progn
       (org-capture nil "m")
@@ -113,9 +113,10 @@
         org-goto-interface 'outline-path-completion
         org-outline-path-complete-in-steps nil
         ;; org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
-        org-tags-column -100
-        org-agenda-tags-column -100
+        org-tags-column -120
+        org-agenda-tags-column -140
         org-agenda-dim-blocked-tasks t
+        org-agenda-skip-scheduled-if-done t
         org-log-done 'time
         org-log-reschedule 'note
         org-log-into-drawer t
@@ -201,14 +202,14 @@
                                 ;;  (file "templates/monthlyreview.org"))
                                 )
 
-        org-agenda-custom-commands '(("g" . "GTD contexts")
+        org-agenda-custom-commands '(("r" "Refile needed" tags-todo "REFILE")
+                                     ("g" . "GTD contexts")
                                      ("gc" "Client" tags-todo "@CLIENT")
                                      ("gh" "Home" tags-todo "@HOME")
                                      ("go" "Houston" tags-todo "@HOUSTON")
                                      ("gw" "Work" tags-todo "WORK")
-                                     ("G" "GTD Block Agenda"
-                                      ((tags-todo "@HOUSTON")
-                                       (tags-todo "@HOME"))))
+                                     ("G" "GTD Block Agenda" ((tags-todo "@HOUSTON")
+                                                              (tags-todo "@HOME"))))
         )
   )
 
@@ -242,6 +243,9 @@
    :nvme "f" #'org-agenda-later
    :nvme "b" #'org-agenda-earlier
    :nvme "M-s" #'org-save-all-org-buffers
+   :nvme "0" '(lambda () (interactive) (digit-argument 0))
+   :nvme "B" #'org-agenda-bulk-action
+   :nvme "$" #'arg-agenda-archive
 
    :map org-mode-map
    :nvme "L" #'org-shiftright
