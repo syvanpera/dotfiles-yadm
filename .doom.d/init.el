@@ -6,8 +6,8 @@
  ;; doom-theme 'doom-palenight
  doom-theme 'doom-one
  ;; doom-theme 'doom-gruvbox
- ;; doom-font (font-spec :family "UbuntuMono Nerd Font" :size 28)
- doom-font (font-spec :family "UbuntuMono Nerd Font" :size 14)
+ doom-font (font-spec :family "UbuntuMono Nerd Font" :size 28)
+ ;; doom-font (font-spec :family "UbuntuMono Nerd Font" :size 14)
  ;; doom-font (font-spec :family "FuraCode Nerd Font" :size 12)
  exec-path (append exec-path '("/home/tuomo/go/bin"))
  )
@@ -211,19 +211,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:background "#1d1f21"))))
- '(solaire-default-face ((t (:background "#1d1f21"))))
+ '(fringe ((t (:background "#1d1f21" :foreground "#3f444a"))))
  '(hl-line ((t (:inherit hl-line :background "#343840"))))
+ '(org-agenda-date-today ((t (:inherit org-agenda-date :overline t :underline t))))
+ '(org-scheduled-previously ((t (:foreground "#cc6666"))))
+ '(org-super-agenda-header ((t (:background "#363739" :overline t :weight bold))))
  '(outline-1 ((t (:background nil :weight normal :underline t))))
  '(outline-2 ((t (:background nil :weight normal))))
  '(outline-3 ((t (:background nil :weight normal))))
  '(outline-4 ((t (:background nil :weight normal))))
- ;; '(org-scheduled ((t (:foreground "#44b9b1"))))
- ;; '(org-scheduled-today ((t (:inherit org-scheduled))))
- '(org-scheduled-previously ((t (:foreground "#cc6666"))))
- ;; '(org-agenda-date ((t (:height 1.1))))
- ;; '(org-agenda-date-weekend ((t (:inherit org-agenda-date))))
- '(org-agenda-date-today ((t (:inherit org-agenda-date :overline t :underline t))))
- '(org-super-agenda-header ((t (:background "#363739" :overline t :weight bold))))
+ '(solaire-default-face ((t (:background "#1d1f21"))))
  '(whitespace-tab ((t (:background "#1d1f21")))))
 
 ;; (custom-set-faces

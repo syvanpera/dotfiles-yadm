@@ -208,22 +208,17 @@ bindsym $super+shift+r mode "resize"
 set $base00 #1e1e1e
 set $base01 #3B4252
 set $base03 #4C566A
-set $base04 #D8DEE9
 set $base05 #1d1f21
-set $base06 #ECEFF4
 set $base07 #8FBCBB
 set $base08 #88C0D0
-set $base09 #81A1C1
-set $base0A #80a1bd
-set $base0B #BF616A
-set $base0C #D08770
+set $base0A #51afef
+set $base0B #80a1bd
 set $base0D #b5bd68
-set $base0E #A3BE8C
-set $base0F #555856
+set $base0F #ECEFF4
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base0A $base0A $base05 $base0D   $base0A
+client.focused          $base0A $base0A $base05 $base0D   $base0B
 client.focused_inactive $base00 $base01 $base0F $base00   $base00
 client.unfocused        $base0A $base03 $base0F $base01   $base0F
 client.urgent           $base08 $base08 $base00 $base08   $base08

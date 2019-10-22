@@ -39,8 +39,8 @@
 
 (defun treemacs-mode-handler()
   (set (make-local-variable 'face-remapping-alist)
-       '((default :background "#282828")
-         (hl-line :background "#383838"))))
+       '((default :background "#2d2f31")
+         (hl-line :background "#4d4f51"))))
 
 (add-hook 'treemacs-mode-hook 'treemacs-mode-handler)
 
