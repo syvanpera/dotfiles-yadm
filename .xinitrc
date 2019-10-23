@@ -1,4 +1,4 @@
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+[[ -f ~/.Xresources-i3 ]] && xrdb -merge -I$HOME ~/.Xresources-i3
 
 # HIDPI
 export GDK_SCALE=2
