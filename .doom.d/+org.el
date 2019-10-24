@@ -113,7 +113,7 @@
         org-goto-interface 'outline-path-completion
         org-outline-path-complete-in-steps nil
         ;; org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
-        org-tags-column -120
+        org-tags-column -80
         org-agenda-tags-column -140
         org-agenda-dim-blocked-tasks t
         org-agenda-skip-scheduled-if-done t
@@ -121,7 +121,7 @@
         org-log-reschedule 'note
         org-log-into-drawer t
         org-log-state-notes-insert-after-drawers nil
-        org-bullets-bullet-list '("⚙" "✿" "◉" "○" "✸")
+        org-bullets-bullet-list '("⚙" "◉" "○" "✿" "✸")
         org-ellipsis " "
         org-tag-alist '(;; Context
                         ("COMPUTER" . ?c)
