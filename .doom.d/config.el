@@ -89,6 +89,38 @@
     :cwd "~/projects/personal/tiniblog"
     :tags '(personal)
     :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "Caverion - Core Master Data API"
+    :command "npm"
+    :args '("run" "prod")
+    :cwd "~/projects/caverion/caverion-core-master-data-api"
+    :tags '(caverion)
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "Caverion - Core IoT API"
+    :command "npm"
+    :args '("run" "prod")
+    :cwd "~/projects/caverion/caverion-core-iot-api"
+    :tags '(caverion)
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "Caverion - Core Data Processing API"
+    :command "npm"
+    :args '("run" "prod")
+    :cwd "~/projects/caverion/caverion-core-data-processing"
+    :tags '(caverion)
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "Caverion - Core Data Integration SAP"
+    :command "npm"
+    :args '("run" "prod")
+    :cwd "~/projects/caverion/caverion-core-integration-sap"
+    :tags '(caverion)
+    :stop-signal 'sigkill
     :kill-process-buffer-on-stop t))
 
 (def-package! ox-hugo
