@@ -1,16 +1,39 @@
 #!/usr/bin/env bash
 
-function main() {
-    local sel=$(echo -e "l Lock\ne Exit\nr Reboot\ns Shutdown" | rofi -dmenu -p 'Session')
+# rofi-session-manager
+# Use rofi to call gnome-session for shutdown, reboot, etc
 
-    case "${sel}" in
-        "l Lock") cmd="cinnamon-screensaver-command -l";;
-        "e Exit") cmd="cinnamon-session-quit";;
-        "r Reboot") cmd="cinnamon-session-quit --reboot";;
-        "s Shutdown") cmd="cinnamon-session-quit --power-off";;
+OPTIONS="l Lock\ne Exit\nr Reboot\ns Shutdown\np Suspend"
+
+# source configuration or use default values
+if [ -f $HOME/.config/rofi-power/config ]; then
+  source $HOME/.config/rofi-power/config
+else
+  LAUNCHER="rofi -width 30 -dmenu -i -p Session"
+#  USE_LOCKER="true"
+#  LOCKER="i3lock"
+fi
+
+option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $2}' | tr -d '\r\n'`
+if [ ${#option} -gt 0 ]
+then
+    case $option in
+      Exit)
+        gnome-session-quit --logout
+        ;;
+      Reboot)
+        gnome-session-quit --reboot
+        ;;
+      Shutdown)
+        gnome-session-quit --power-off
+        ;;
+      Lock)
+        gnome-screensaver-command --lock
+        ;;
+      Suspend)
+        systemctl suspend
+        ;;
+      *)
+        ;;
     esac
-
-    `$cmd`
-}
-
-main
+fi
