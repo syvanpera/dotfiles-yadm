@@ -22,6 +22,9 @@
 (setq dired-listing-switches (concat dired-listing-switches "Gg")
       dired-dwim-target t)
 
+(setq +org-dir (expand-file-name "~/Sync/org/")
+      org-directory (expand-file-name "~/Sync/org/"))
+
 (require 'simpleclip)
 (simpleclip-mode 1)
 

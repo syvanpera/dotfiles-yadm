@@ -89,9 +89,7 @@
 (after! org
   (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  (setq +org-dir (expand-file-name "~/Sync/org/")
-        org-directory (expand-file-name "~/Sync/org/")
-        +org-capture-todo-file "inbox.org"
+  (setq +org-capture-todo-file "inbox.org"
         +org-capture-notes-file "notes.org"
         org-agenda-files (mapcar(lambda (s) (concat org-directory s))
                                 '("inbox.org"
@@ -121,7 +119,7 @@
         org-log-reschedule 'note
         org-log-into-drawer t
         org-log-state-notes-insert-after-drawers nil
-        org-bullets-bullet-list '("⚙" "◉" "○" "✿" "✸")
+        org-bullets-bullet-list '("⚙" "◉" "○" "✸" "✿")
         org-ellipsis " "
         org-tag-alist '(;; Context
                         ("COMPUTER" . ?c)
