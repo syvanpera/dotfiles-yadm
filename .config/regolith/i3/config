@@ -188,8 +188,9 @@ bindsym $super+l exec gnome-screensaver-command --lock
 
 # shortcuts for common programs
 bindsym $super+c exec gnome-control-center
-bindsym $super+n exec newsboat
-bindsym $super+m exec neomutt
+bindsym $super+n exec st -e newsboat
+bindsym $super+m exec st -e neomutt
+bindsym $super+r exec st -e ranger
 
 # resize window (you can also use the mouse for that)
 mode "Resize Mode" {
