@@ -191,6 +191,7 @@ bindsym $super+c exec gnome-control-center
 bindsym $super+n exec st -e newsboat
 bindsym $super+m exec st -e neomutt
 bindsym $super+r exec st -e ranger
+bindsym $super+e exec emacs
 
 # resize window (you can also use the mouse for that)
 mode "Resize Mode" {
