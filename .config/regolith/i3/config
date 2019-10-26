@@ -11,7 +11,7 @@ set $super Mod4
 set $i3xrocks_config ~/.config/regolith/i3xrocks/config
 
 # compton config file
-set $compton_config /etc/regolith/compton/config
+set $compton_config ~/.config/regolith/compton/config
 
 # path to terminal. Override this to specify a custom terminal.
 set $terminal_path ~/.local/bin/st
@@ -298,28 +298,31 @@ set_from_resource $i3-wm.bar.workspace.urgent.text.color i3-wm.bar.workspace.urg
 set_from_resource $i3-wm.bar.font i3-wm.bar.font "pango:Source Code Pro Medium 13, FontAwesome 13"
 
 # Configure the bar
-bar {
-  position top
-  font $i3-wm.bar.font
-  separator_symbol " "
-  status_command i3xrocks -c $i3xrocks_config
-  tray_output none
-  strip_workspace_numbers yes
-
-  colors {
-      background $i3-wm.bar.background.color
-      statusline $i3-wm.bar.statusline.color
-      separator  $i3-wm.bar.separator.color
-
-#                        BORDER  BACKGROUND TEXT
-      focused_workspace  $i3-wm.bar.workspace.focused.border.color      $i3-wm.bar.workspace.focused.background.color   $i3-wm.bar.workspace.focused.text.color
-      active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
-      inactive_workspace $i3-wm.bar.workspace.inactive.border.color     $i3-wm.bar.workspace.inactive.background.color  $i3-wm.bar.workspace.inactive.text.color
-      urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       $i3-wm.bar.workspace.urgent.background.color    $i3-wm.bar.workspace.urgent.text.color
-  }
-}
+# bar {
+#   position top
+#   font $i3-wm.bar.font
+#   separator_symbol " "
+#   status_command i3xrocks -c $i3xrocks_config
+#   tray_output none
+#   strip_workspace_numbers yes
+#
+#   colors {
+#       background $i3-wm.bar.background.color
+#       statusline $i3-wm.bar.statusline.color
+#       separator  $i3-wm.bar.separator.color
+#
+# #                        BORDER  BACKGROUND TEXT
+#       focused_workspace  $i3-wm.bar.workspace.focused.border.color      $i3-wm.bar.workspace.focused.background.color   $i3-wm.bar.workspace.focused.text.color
+#       active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
+#       inactive_workspace $i3-wm.bar.workspace.inactive.border.color     $i3-wm.bar.workspace.inactive.background.color  $i3-wm.bar.workspace.inactive.text.color
+#       urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       $i3-wm.bar.workspace.urgent.background.color    $i3-wm.bar.workspace.urgent.text.color
+#   }
+# }
 
 # Run programs when i3 starts
+
+# Start Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Start the composite manager
 exec --no-startup-id compton -f --config $compton_config

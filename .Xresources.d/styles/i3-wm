@@ -47,7 +47,8 @@ i3-wm.client.urgent.color.child_border:
 
 #define glyph_font QUOTE(typeface_bar_glyph)
 
-#define WORKSPACE_NAME(INDEX, FONT, COLOR, GLYPH) INDEX:<span font_desc=FONT> INDEX </span><span foreground=COLOR>GLYPH</span>
+#define WORKSPACE_NAME_I3_BAR(INDEX, FONT, COLOR, GLYPH) INDEX:<span font_desc=FONT> INDEX </span><span foreground=COLOR>GLYPH</span>
+#define WORKSPACE_NAME(INDEX, FONT, COLOR, GLYPH) INDEX:INDEX GLYPH
 
 i3-wm.workspace.01.name: WORKSPACE_NAME(1, glyph_font, QUOTE(color_blue), glyph)
 i3-wm.workspace.02.name: WORKSPACE_NAME(2, glyph_font, QUOTE(color_cyan), glyph)
