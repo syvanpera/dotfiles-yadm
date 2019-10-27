@@ -1,7 +1,7 @@
 ! Gruvbox Colors
 #define color_base03       #1d1f21
 #define color_base02       #282828
-#define color_base01       #504945
+#define color_base01       #858585
 #define color_base00       #e9fffa
 #define color_base0        #fbf1c7
 #define color_base1        #e9fffa
