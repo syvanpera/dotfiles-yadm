@@ -18,25 +18,44 @@ set $terminal_path ~/.local/bin/st
 
 # Color values are defined in ~/.Xresources-regolith
 # These are the labels which define each i3 workspace.
-set_from_resource $ws1  i3-wm.workspace.01.name "1"
-set_from_resource $ws2  i3-wm.workspace.02.name "2"
-set_from_resource $ws3  i3-wm.workspace.03.name "3"
-set_from_resource $ws4  i3-wm.workspace.04.name "4"
-set_from_resource $ws5  i3-wm.workspace.05.name "5"
-set_from_resource $ws6  i3-wm.workspace.06.name "6"
-set_from_resource $ws7  i3-wm.workspace.07.name "7"
-set_from_resource $ws8  i3-wm.workspace.08.name "8"
-set_from_resource $ws9  i3-wm.workspace.09.name "9"
-set_from_resource $ws10 i3-wm.workspace.10.name "10"
-set_from_resource $ws11 i3-wm.workspace.11.name "11"
-set_from_resource $ws12 i3-wm.workspace.12.name "12"
-set_from_resource $ws13 i3-wm.workspace.13.name "13"
-set_from_resource $ws14 i3-wm.workspace.14.name "14"
-set_from_resource $ws15 i3-wm.workspace.15.name "15"
-set_from_resource $ws16 i3-wm.workspace.16.name "16"
-set_from_resource $ws17 i3-wm.workspace.17.name "17"
-set_from_resource $ws18 i3-wm.workspace.18.name "18"
-set_from_resource $ws19 i3-wm.workspace.19.name "19"
+# set_from_resource $ws1  i3-wm.workspace.01.name "1"
+# set_from_resource $ws2  i3-wm.workspace.02.name "2"
+# set_from_resource $ws3  i3-wm.workspace.03.name "3"
+# set_from_resource $ws4  i3-wm.workspace.04.name "4"
+# set_from_resource $ws5  i3-wm.workspace.05.name "5"
+# set_from_resource $ws6  i3-wm.workspace.06.name "6"
+# set_from_resource $ws7  i3-wm.workspace.07.name "7"
+# set_from_resource $ws8  i3-wm.workspace.08.name "8"
+# set_from_resource $ws9  i3-wm.workspace.09.name "9"
+# set_from_resource $ws10 i3-wm.workspace.10.name "10"
+# set_from_resource $ws11 i3-wm.workspace.11.name "11"
+# set_from_resource $ws12 i3-wm.workspace.12.name "12"
+# set_from_resource $ws13 i3-wm.workspace.13.name "13"
+# set_from_resource $ws14 i3-wm.workspace.14.name "14"
+# set_from_resource $ws15 i3-wm.workspace.15.name "15"
+# set_from_resource $ws16 i3-wm.workspace.16.name "16"
+# set_from_resource $ws17 i3-wm.workspace.17.name "17"
+# set_from_resource $ws18 i3-wm.workspace.18.name "18"
+# set_from_resource $ws19 i3-wm.workspace.19.name "19"
+set $ws1 1:
+set $ws2 2:
+set $ws3 3:
+set $ws4 4:
+set $ws5 5:
+set $ws6 6:
+set $ws7 7:
+set $ws8 8:
+set $ws9 9:
+
+workspace $ws1  output DP-1
+workspace $ws2  output DP-1
+workspace $ws3  output DP-2
+workspace $ws4  output DP-2
+workspace $ws5  output eDP-1
+workspace $ws6  output eDP-1
+workspace $ws7  output eDP-1
+workspace $ws8  output eDP-1
+workspace $ws9  output eDP-1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -57,9 +76,10 @@ set_from_resource $rofiTheme rofi.theme "regolith-theme"
 
 # rofi app and window launchers
 bindsym $mod+space exec rofi -show drun -theme $rofiTheme
-bindsym $mod+Shift+space exec rofi -show run -theme $rofiTheme
+bindsym $mod+Shift+space exec rofi -modi "Files:~/scripts/rofi-file-browser.sh" -show Files -theme $rofiTheme
 bindsym $mod+Shift+w exec rofi -show window -theme $rofiTheme
 bindsym $mod+Shift+n exec ~/scripts/networkmanager_dmenu
+bindsym $mod+Shift+c exec ~/scripts/roficlip
 
 # change focus
 bindsym $mod+h focus left
@@ -72,6 +92,12 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+# resize focused window
+bindsym $mod+control+h resize shrink width 2 px or 2 ppt
+bindsym $mod+control+j resize grow height 2 px or 2 ppt
+bindsym $mod+control+k resize shrink height 2 px or 2 ppt
+bindsym $mod+control+l resize grow width 2 px or 2 ppt
 
 # toggle split orientation
 bindsym $super+space split toggle
@@ -94,6 +120,12 @@ bindsym $super+Tab focus mode_toggle
 
 # toggle tabbed mode
 bindsym $super+t layout toggle tabbed splith splitv
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# show the next scratchpad window or hide the focused scratchpad window
+bindsym $mod+minus scratchpad show
 
 # move to workspace
 bindsym $mod+1 workspace $ws1
@@ -163,7 +195,7 @@ bindsym $mod+$super+9 move container to workspace $ws9; workspace $ws9
 # bindsym $mod+$super+Ctrl+9 move container to workspace $ws19; workspace $ws19
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $super+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -191,6 +223,7 @@ bindsym $super+c exec gnome-control-center
 bindsym $super+n exec st -e newsboat
 bindsym $super+m exec st -e neomutt
 bindsym $super+r exec st -e ranger
+bindsym $super+h exec st -e htop
 bindsym $super+e exec emacs
 
 # resize window (you can also use the mouse for that)
@@ -332,3 +365,6 @@ exec --no-startup-id /usr/bin/regolith-ftue
 
 # Hide the mouse pointer if unused for a duration
 exec --no-startup-id /usr/bin/unclutter -b
+
+# Start clipster daemon
+exec --no-startup-id clipster -d
